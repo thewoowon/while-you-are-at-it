@@ -15,7 +15,7 @@ import BottomSheet, {
   BottomSheetView,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import KakaoMap from '../components/KakaoMap';
+import NaverMap from '../components/NaverMap';
 import {ListIcon, RingIcon, GPSIcon} from '../components/Icons';
 import {CONTENTS_DATA} from '../data';
 
@@ -44,7 +44,7 @@ const HomeScreen = () => {
         translucent={false}
       />
       <SafeAreaView style={styles.backgroundStyle}>
-        <KakaoMap />
+        <NaverMap />
         <View
           style={{
             flexDirection: 'row',
