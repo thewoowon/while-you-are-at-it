@@ -5,8 +5,8 @@ buildscript {
         compileSdkVersion = 35
         targetSdkVersion = 34
         ndkVersion = "26.1.10909125"
-        kotlinVersion = "1.9.24",
-        enableHermes: false
+        kotlinVersion = "1.9.24" // 콤마 제거
+        enableHermes = false // 콜론을 '='로 수정
     }
     repositories {
         google()
