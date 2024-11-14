@@ -12,7 +12,15 @@ import {
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
-const OrderMainScreen = () => {
+type RootStackParamList = {
+  OrderMain: undefined;
+  Search: undefined;
+  CompanyInfo: undefined;
+  OrderSheet: undefined;
+  Camera: undefined;
+};
+
+const OrderMainScreen = ({navigation}: any) => {
   return (
     <GestureHandlerRootView style={styles.container}>
       <StatusBar
@@ -24,6 +32,13 @@ const OrderMainScreen = () => {
         <View style={styles.container}>
           <Text>Order Screen</Text>
         </View>
+        <Pressable
+          onPress={() => {
+            // stack navigation
+            navigation.navigate('Search');
+          }}>
+          <Text>Pressable</Text>
+        </Pressable>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
