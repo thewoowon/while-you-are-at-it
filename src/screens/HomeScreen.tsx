@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useMemo, useRef, useState, useCallback} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -8,7 +8,7 @@ import {
   View,
   TextInput,
   Pressable,
-  Animated,
+  TouchableOpacity,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {
@@ -18,23 +18,44 @@ import BottomSheet, {
 import NaverMap from '../components/NaverMap';
 import {ListIcon, RingIcon, GPSIcon} from '../components/Icons';
 import {CONTENTS_DATA} from '../data';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  useAnimatedReaction,
+  withTiming,
+} from 'react-native-reanimated';
 
 const HomeScreen = () => {
   const [text, setText] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
 
+  // BottomSheet 애니메이션 값을 관리하는 shared value
+  const bottomSheetTranslateY = useSharedValue(0);
+
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  // animated styles
-  const [bottomPosition] = useState(new Animated.Value(20));
-
   // 바텀 시트의 snap 포인트 정의
-  const snapPoints = useMemo(() => ['30%', '60%'], []);
+  const snapPoints = useMemo(() => [300, 550], []);
 
   const handlePress = () => {
     console.log('Pressed!');
   };
+
+  // 애니메이션 스타일 - 버튼의 위치
+  const animatedButtonStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{translateY: bottomSheetTranslateY.value}],
+    };
+  });
+
+  // BottomSheet 애니메이션 값 반응 설정
+  useAnimatedReaction(
+    () => bottomSheetTranslateY.value,
+    (prepared, previous) => {
+      bottomSheetTranslateY.value = prepared; // BottomSheet와 버튼이 동시에 움직이도록 설정
+    },
+  );
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -74,30 +95,36 @@ const HomeScreen = () => {
             <RingIcon />
           </Pressable>
         </View>
-        <Pressable
-          style={({pressed}) => [
-            {
-              width: 48,
-              height: 48,
-              borderRadius: 50,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
-            {backgroundColor: pressed ? '#eeeeee' : 'white'},
-          ]}
-          onPress={
-            () => bottomSheetRef.current?.snapToIndex(1) // GPS 버튼을 누르면 BottomSheet 확장
-          } // GPS 버튼을 누르면 BottomSheet 확장
-        >
-          <GPSIcon />
-        </Pressable>
+
+        {/* 하단 버튼 */}
+        <Animated.View style={[styles.buttonContainer, animatedButtonStyle]}>
+          <Pressable
+            style={({pressed}) => [
+              styles.gps,
+              {backgroundColor: pressed ? '#eeeeee' : 'white'},
+            ]}
+            onPress={
+              () => bottomSheetRef.current?.snapToIndex(0) // GPS 버튼을 누르면 BottomSheet 확장
+            } // GPS 버튼을 누르면 BottomSheet 확장
+          >
+            <GPSIcon />
+          </Pressable>
+        </Animated.View>
         <BottomSheet
           ref={bottomSheetRef}
-          index={-1}
+          // BottomSheet는 처음에 펼쳐진 상태로 시작
+          index={0}
+          // 일단 스냅 포인트는 300, 550으로 설정
           snapPoints={snapPoints}
           enablePanDownToClose
-          enableDynamicSizing={false}>
+          enableDynamicSizing={false}
+          onAnimate={(fromIndex, toIndex) => {
+            if (toIndex === 0) {
+              bottomSheetTranslateY.value = -snapPoints[toIndex] + 10;
+            } else {
+              bottomSheetTranslateY.value = 0;
+            }
+          }}>
           <BottomSheetView>
             <View
               style={{
@@ -148,13 +175,13 @@ const HomeScreen = () => {
                     {
                       {
                         passItOn: (
-                          <Text style={{color: '#C9A92C'}}>전달해주세요</Text>
+                          <Text style={{color: '#D395D6'}}>전달해주세요</Text>
                         ),
                         deliverItTo: (
                           <Text style={{color: '#3CBACD'}}>전달해드려요</Text>
                         ),
                         recruitment: (
-                          <Text style={{color: '#D395D6'}}>팀 모집해요</Text>
+                          <Text style={{color: '#C9A92C'}}>팀 모집해요</Text>
                         ),
                       }[content.category]
                     }
@@ -397,9 +424,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   gps: {
-    position: 'absolute',
-    right: 20,
-    zIndex: 10,
     width: 48,
     height: 48,
     backgroundColor: 'white',
@@ -409,7 +433,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 5,
   },
   contents: {
     width: '100%',
@@ -419,6 +442,11 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: 20,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
   },
 });
 
