@@ -8,7 +8,6 @@ import {
   View,
   TextInput,
   Pressable,
-  TouchableOpacity,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {
@@ -22,8 +21,8 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   useAnimatedReaction,
-  withTiming,
 } from 'react-native-reanimated';
+import PassItem from '../components/PassItem';
 
 const HomeScreen = () => {
   const [text, setText] = useState('');
@@ -147,214 +146,7 @@ const HomeScreen = () => {
               gap: 20,
             }}>
             {CONTENTS_DATA.map((content, index) => (
-              <Pressable key={index} style={styles.contents}>
-                <View
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}>
-                  <View
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: {
-                        passItOn: '#F8E9FC',
-                        deliverItTo: '#E9F9FC',
-                        recruitment: '#F9F7D7',
-                      }[content.category],
-                      paddingTop: 3,
-                      paddingBottom: 3,
-                      paddingLeft: 6,
-                      paddingRight: 6,
-                      borderRadius: 2,
-                    }}>
-                    {
-                      {
-                        passItOn: (
-                          <Text style={{color: '#D395D6'}}>전달해주세요</Text>
-                        ),
-                        deliverItTo: (
-                          <Text style={{color: '#3CBACD'}}>전달해드려요</Text>
-                        ),
-                        recruitment: (
-                          <Text style={{color: '#C9A92C'}}>팀 모집해요</Text>
-                        ),
-                      }[content.category]
-                    }
-                  </View>
-                  {
-                    {
-                      waiting: (
-                        <Text
-                          style={{
-                            color: '#B5B5B5',
-                            fontSize: 14,
-                            fontFamily: 'Pretendard-Regular',
-                          }}>
-                          대기중{' '}
-                          {content.participants &&
-                            `${content.participants}/${content.TotalParticipants}`}
-                        </Text>
-                      ),
-                      processing: (
-                        <Text
-                          style={{
-                            color: '#B5B5B5',
-                            fontSize: 14,
-                            fontFamily: 'Pretendard-Regular',
-                          }}>
-                          모집마감{' '}
-                          {`${content.participants}/${content.TotalParticipants}`}
-                        </Text>
-                      ),
-                      completed: (
-                        <Text
-                          style={{
-                            color: '#B5B5B5',
-                            fontSize: 14,
-                            fontFamily: 'Pretendard-Regular',
-                          }}>
-                          모집중{' '}
-                          {`${content.participants}/${content.TotalParticipants}`}
-                        </Text>
-                      ),
-                    }[content.processStatus]
-                  }
-                </View>
-                <View
-                  style={{
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    gap: 4,
-                  }}>
-                  <Text
-                    style={{
-                      color: '#8E979E',
-                    }}>
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        color: '#6E7881',
-                      }}>
-                      {content.from}
-                    </Text>
-                    에서{' '}
-                    <Text
-                      style={{
-                        color: '#6E7881',
-                        fontFamily: 'Pretendard-SemiBold',
-                      }}>
-                      {content.to}
-                    </Text>
-                    (으)로
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#1F1F1F',
-                      fontSize: 17,
-                      fontFamily: 'Pretendard-SemiBold',
-                    }}>
-                    {content.title}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                  }}>
-                  {content.period && (
-                    <Text
-                      style={{
-                        color: '#192628',
-                        fontSize: 15,
-                        fontFamily: 'Pretendard-Medium',
-                      }}>
-                      기간{'  '}
-                      <Text
-                        style={{
-                          fontFamily: 'Pretendard-Regular',
-                        }}>
-                        {content.period}
-                      </Text>
-                    </Text>
-                  )}
-                  {content.enableTime && (
-                    <Text
-                      style={{
-                        color: '#192628',
-                        fontSize: 15,
-                        fontFamily: 'Pretendard-Medium',
-                      }}>
-                      수령{'  '}
-                      <Text
-                        style={{
-                          fontFamily: 'Pretendard-Regular',
-                        }}>
-                        {content.enableTime}
-                      </Text>
-                    </Text>
-                  )}
-                  {content.startTime && (
-                    <Text
-                      style={{
-                        color: '#192628',
-                        fontSize: 15,
-                        fontFamily: 'Pretendard-Medium',
-                      }}>
-                      출발시간{'  '}
-                      <Text
-                        style={{
-                          fontFamily: 'Pretendard-Regular',
-                        }}>
-                        {content.startTime}
-                      </Text>
-                    </Text>
-                  )}
-                  {content.pickUpLocation && (
-                    <Text
-                      style={{
-                        color: '#192628',
-                        fontSize: 15,
-                        fontFamily: 'Pretendard-Medium',
-                      }}>
-                      수령장소{'  '}
-                      <Text
-                        style={{
-                          fontFamily: 'Pretendard-Regular',
-                        }}>
-                        {content.pickUpLocation}
-                      </Text>
-                    </Text>
-                  )}
-                  {content.destination && (
-                    <Text
-                      style={{
-                        color: '#192628',
-                        fontSize: 15,
-                        fontFamily: 'Pretendard-Medium',
-                      }}>
-                      목적지{'  '}
-                      <Text
-                        style={{
-                          fontFamily: 'Pretendard-Regular',
-                        }}>
-                        {content.destination}
-                      </Text>
-                    </Text>
-                  )}
-                </View>
-              </Pressable>
+              <PassItem key={index} passItem={content} />
             ))}
           </BottomSheetScrollView>
         </BottomSheet>
