@@ -15,6 +15,7 @@ type ContentsCategory = 'passItOn' | 'deliverItTo' | 'recruitment';
 type ProcessStatus = 'waiting' | 'processing' | 'completed';
 
 type ContentsType = {
+  id: string;
   from: string;
   to: string;
   title: string;
@@ -27,4 +28,19 @@ type ContentsType = {
   TotalParticipants?: number;
   category: ContentsCategory;
   processStatus: ProcessStatus;
+};
+
+type OrderType = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  // 예상작업완료일
+  dueDate: string;
+};
+
+type NotificationType = {
+  id: string;
+  title: string;
+  description: string;
 };
