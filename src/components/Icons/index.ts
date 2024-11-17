@@ -5,3 +5,5 @@ export {default as AroundIcon} from './AroundIcon';
 export {default as DeliveryIcon} from './DeliveryIcon';
 export {default as OrderIcon} from './OrderIcon';
 export {default as MyIcon} from './MyIcon';
+export {default as SearchIcon} from './SearchIcon';
+export {default as AlarmIcon} from './AlarmIcon';
