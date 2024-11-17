@@ -16,7 +16,18 @@ const Tab = createBottomTabNavigator();
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={{
+        dark: false,
+        colors: {
+          primary: '#FF6B6B',
+          background: '#FFFFFF',
+          card: '#FFFFFF',
+          text: '#000000',
+          border: '#E5E5E5',
+          notification: '#FF6B6B',
+        },
+      }}>
       <Tab.Navigator
         screenOptions={{
           tabBarItemStyle: {
