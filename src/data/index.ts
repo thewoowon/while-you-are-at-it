@@ -1,5 +1,6 @@
 export const CONTENTS_DATA: ContentsType[] = [
   {
+    id: 'GT-1234',
     from: '성수역',
     to: '노원역',
     title: '성수에서 노원으로 오시는 분 계신가요?ㅜㅜ',
@@ -9,6 +10,7 @@ export const CONTENTS_DATA: ContentsType[] = [
     processStatus: 'waiting',
   },
   {
+    id: 'GT-1235',
     from: '하계역 부근',
     to: '을지로역',
     title: '돌아가면서 전달해줄 팀 모집해요!',
@@ -18,6 +20,7 @@ export const CONTENTS_DATA: ContentsType[] = [
     TotalParticipants: 5,
   },
   {
+    id: 'GT-1236',
     from: '성수역',
     to: '노원역',
     title: '종로 3가 근처 전달해드려요',
@@ -30,6 +33,7 @@ export const CONTENTS_DATA: ContentsType[] = [
     TotalParticipants: 5,
   },
   {
+    id: 'GT-1237',
     from: '성수역',
     to: '노원역',
     title: '성수에서 노원으로 오시는 분 계신가요?ㅜㅜ',
@@ -39,6 +43,7 @@ export const CONTENTS_DATA: ContentsType[] = [
     processStatus: 'waiting',
   },
   {
+    id: 'GT-1238',
     from: '하계역 부근',
     to: '을지로역',
     title: '돌아가면서 전달해줄 팀 모집해요!',
@@ -48,6 +53,7 @@ export const CONTENTS_DATA: ContentsType[] = [
     TotalParticipants: 5,
   },
   {
+    id: 'GT-1239',
     from: '성수역',
     to: '노원역',
     title: '종로 3가 근처 전달해드려요',
@@ -58,5 +64,85 @@ export const CONTENTS_DATA: ContentsType[] = [
     processStatus: 'completed',
     participants: 2,
     TotalParticipants: 5,
+  },
+];
+
+export const ORDER_DATA: OrderType[] = [
+  {
+    id: 'GX-1234',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1235',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1236',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1237',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1238',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1239',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1240',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1241',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+  {
+    id: 'GX-1242',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+  },
+];
+
+export const NOTIFICATION_DATA: NotificationType[] = [
+  {
+    id: 'SE-1234',
+    title: '출발 알림',
+    description: '헤파이토스님이 전달을 완료했어요.',
+  },
+  {
+    id: 'SE-1235',
+    title: '전달약속 알림',
+    description:
+      '오늘 오후 8시 30분에 헤파이토스의 망치님과 전달약속이 있어요!',
   },
 ];
