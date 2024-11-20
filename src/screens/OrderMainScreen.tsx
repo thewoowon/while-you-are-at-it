@@ -50,8 +50,6 @@ const OrderMainScreen = ({navigation, route}: any) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                // TODO:
-                // 전역 알림창 띄우기
                 navigation.navigate('Notification');
               }}>
               <RingIcon />
@@ -64,12 +62,37 @@ const OrderMainScreen = ({navigation, route}: any) => {
               return (
                 <Pressable
                   key={order.id}
+                  style={{
+                    padding: 20,
+                    borderRadius: 10,
+                  }}
                   onPress={() => {
                     navigation.navigate('CompanyInfo');
                   }}>
-                  <Text>{order.title}</Text>
-                  <Text>{order.description}</Text>
-                  <Text>{order.dueDate}</Text>
+                  <Text
+                    style={{
+                      color: '#394245',
+                      fontSize: 16,
+                      fontFamily: 'Pretendard-SeimBold',
+                    }}>
+                    {order.title}
+                  </Text>
+                  <Text
+                    style={{
+                      color: '#6E7881',
+                      fontSize: 14,
+                      fontFamily: 'Pretendard-Regular',
+                    }}>
+                    {order.description}
+                  </Text>
+                  <Text
+                    style={{
+                      color: '#6E7881',
+                      fontSize: 14,
+                      fontFamily: 'Pretendard-Regular',
+                    }}>
+                    {order.dueDate}
+                  </Text>
                 </Pressable>
               );
             })
@@ -111,9 +134,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Pretendard-ExtraBold',
   },
   orderList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
+    flex: 1,
   },
 });
 
