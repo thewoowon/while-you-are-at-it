@@ -24,7 +24,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import PassItem from '../components/PassItem';
 
-const HomeScreen = () => {
+const AroundMainScreen = ({navigation, route}: any) => {
   const [text, setText] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -38,7 +38,7 @@ const HomeScreen = () => {
   const snapPoints = useMemo(() => [300, 550], []);
 
   const handlePress = () => {
-    console.log('Pressed!');
+    navigation.navigate('Notification');
   };
 
   // 애니메이션 스타일 - 버튼의 위치
@@ -242,4 +242,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default AroundMainScreen;
