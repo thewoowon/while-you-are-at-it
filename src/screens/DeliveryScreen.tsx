@@ -22,7 +22,7 @@ const DeliveryScreen = () => {
       />
       <SafeAreaView style={styles.backgroundStyle}>
         <View style={styles.container}>
-          <Text>Order Screen</Text>
+          <Text>Delivery Screen</Text>
         </View>
       </SafeAreaView>
     </GestureHandlerRootView>
