@@ -4,8 +4,11 @@ import Svg, {Path} from 'react-native-svg';
 const LeftChevronIcon = ({width = 24, height = 24, color = 'black'}) => (
   <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
     <Path
-      d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
-      fill="#1F1F1F"
+      d="M16 4L8 12L16 20"
+      stroke="#181818"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </Svg>
 );
