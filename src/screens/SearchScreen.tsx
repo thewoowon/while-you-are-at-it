@@ -11,7 +11,6 @@ import {
   Image,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import LeftChevronIcon from '../components/Icons/LeftChevronIcon';
 import {
   EngravingIcon,
   AcrylIcon,
@@ -25,6 +24,7 @@ import {
 } from '../components/Icons/material';
 import {useDebounce} from '../hooks';
 import {SEARCH_DATA} from '../data';
+import {DownChevronIcon, LeftArrowIcon} from '../components/Icons';
 
 export const imageMap: {
   [key: string]: any;
@@ -56,11 +56,38 @@ const materialIcons: {
   '그 외': OthersIcon,
 };
 
+const filterList: ('지역' | '소재' | '거리순' | '가격순')[] = [
+  '지역',
+  '소재',
+  '거리순',
+  '가격순',
+];
+
 const SearchScreen = ({navigation, route}: any) => {
   const [searchString, setSearchString] = useState('');
   const [searchResult, setSearchResult] = useState<SearchType[]>([]);
 
   const debouncedSearchString = useDebounce(searchString, 500);
+
+  const handleFilter =
+    (filter: '지역' | '소재' | '거리순' | '가격순') => () => {
+      switch (filter) {
+        case '지역':
+          setSearchResult(searchResult.sort(() => Math.random() - 0.5));
+          break;
+        case '소재':
+          setSearchResult(searchResult.sort(() => Math.random() - 0.5));
+          break;
+        case '거리순':
+          setSearchResult(searchResult.sort(() => Math.random() - 0.5));
+          break;
+        case '가격순':
+          setSearchResult(searchResult.sort(() => Math.random() - 0.5));
+          break;
+        default:
+          break;
+      }
+    };
 
   useEffect(() => {
     if (debouncedSearchString.length > 0) {
@@ -88,7 +115,7 @@ const SearchScreen = ({navigation, route}: any) => {
             onPress={() => {
               navigation.goBack();
             }}>
-            <LeftChevronIcon />
+            <LeftArrowIcon />
           </Pressable>
           <View
             style={{
@@ -103,7 +130,46 @@ const SearchScreen = ({navigation, route}: any) => {
             />
           </View>
         </View>
-
+        {searchString.length > 0 && searchResult.length > 0 && (
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 10,
+              borderBottomColor: '#F2F4F6',
+              borderBottomWidth: 1,
+              paddingLeft: 20,
+              paddingRight: 20,
+              paddingTop: 14,
+              paddingBottom: 14,
+            }}>
+            {filterList.map((item, index) => {
+              return (
+                <Pressable
+                  key={index}
+                  style={({pressed}) => [
+                    {
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      borderRadius: 21,
+                      borderColor: '#E6EAED',
+                      borderWidth: 1,
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      paddingTop: 5,
+                      paddingBottom: 5,
+                    },
+                    {backgroundColor: pressed ? '#eeeeee' : 'white'},
+                  ]}
+                  onPress={handleFilter(item)}>
+                  <Text>{item}</Text>
+                  <DownChevronIcon />
+                </Pressable>
+              );
+            })}
+          </View>
+        )}
         <ScrollView
           style={{
             flex: 1,
@@ -120,25 +186,78 @@ const SearchScreen = ({navigation, route}: any) => {
               }}>
               {searchResult.map((item, index) => {
                 return (
-                  <View
+                  <Pressable
                     key={index}
                     style={{
                       display: 'flex',
                       flexDirection: 'row',
                       alignItems: 'center',
                       gap: 14,
+                    }}
+                    onPress={() => {
+                      navigation.navigate('CompanyInfo', {company: item});
                     }}>
                     <Image
                       source={imageMap[item.src]}
                       style={{width: 64, height: 64}}
                       alt={item.name}
                     />
-                    <View>
-                      <Text>{item.name}</Text>
-                      <Text>{item.type}</Text>
-                      <Text>{item.address}</Text>
+                    <View
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 12,
+                      }}>
+                      <View
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: 5,
+                        }}>
+                        <Text
+                          style={{
+                            fontFamily: 'Pretendard-SemiBold',
+                            fontSize: 16,
+                            color: '#1F1F1F',
+                            lineHeight: 16,
+                          }}>
+                          {item.name}
+                        </Text>
+                        <View
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 5,
+                          }}>
+                          <Text
+                            style={{
+                              fontFamily: 'Pretendard-SemiBold',
+                              fontSize: 14,
+                              color: '#1CD7AE',
+                              lineHeight: 14,
+                            }}>
+                            {item.type}
+                          </Text>
+                          <Text
+                            style={{
+                              fontFamily: 'Pretendard-Regular',
+                              fontSize: 14,
+                              color: '#192628',
+                              lineHeight: 14,
+                            }}>{`1회 당 ${item.price.toLocaleString(
+                            'ko-KR',
+                          )}원`}</Text>
+                        </View>
+                      </View>
+                      <Text
+                        style={{
+                          fontFamily: 'Pretendard-Regular',
+                          fontSize: 12,
+                          color: '#B1BAC0',
+                        }}>{`현재 위치로부터 2.2km`}</Text>
                     </View>
-                  </View>
+                  </Pressable>
                 );
               })}
             </View>
