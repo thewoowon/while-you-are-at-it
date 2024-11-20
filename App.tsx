@@ -3,8 +3,12 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import HomeScreen from './src/screens/HomeScreen';
-import {DeliveryScreen, MyScreen, OrderScreen} from './src/screens';
+import {
+  DeliveryScreen,
+  MyScreen,
+  OrderScreen,
+  AroundScreen,
+} from './src/screens';
 import {
   AroundIcon,
   DeliveryIcon,
@@ -45,7 +49,7 @@ function App(): React.JSX.Element {
         }}>
         <Tab.Screen
           name="주변"
-          component={HomeScreen}
+          component={AroundScreen}
           options={{
             headerShown: false,
             tabBarIcon: () => <AroundIcon />,
