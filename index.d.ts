@@ -44,3 +44,15 @@ type NotificationType = {
   title: string;
   description: string;
 };
+
+type SearchType = {
+  id: string;
+  // 상호
+  name: string;
+  type: string;
+  // 1 회당 가격
+  price: number;
+  // 주소
+  address: string;
+  src: string;
+};
