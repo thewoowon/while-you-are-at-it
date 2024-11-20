@@ -67,7 +67,8 @@ const OrderMainScreen = ({navigation, route}: any) => {
                     borderRadius: 10,
                   }}
                   onPress={() => {
-                    navigation.navigate('CompanyInfo');
+                    // navigation.navigate('CompanyInfo');
+                    // TODO: 주문 상세 페이지로 이동
                   }}>
                   <Text
                     style={{
