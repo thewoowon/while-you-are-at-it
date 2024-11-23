@@ -92,7 +92,7 @@ const SearchScreen = ({navigation, route}: any) => {
   useEffect(() => {
     if (debouncedSearchString.length > 0) {
       const result = SEARCH_DATA.filter(item =>
-        item.type.includes(debouncedSearchString),
+        item.type.some(type => type.includes(debouncedSearchString)),
       );
       setSearchResult(result);
     } else {
@@ -230,15 +230,28 @@ const SearchScreen = ({navigation, route}: any) => {
                             alignItems: 'center',
                             gap: 5,
                           }}>
-                          <Text
+                          <View
                             style={{
-                              fontFamily: 'Pretendard-SemiBold',
-                              fontSize: 14,
-                              color: '#1CD7AE',
-                              lineHeight: 14,
+                              display: 'flex',
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                              gap: 1,
                             }}>
-                            {item.type}
-                          </Text>
+                            {item.type.map((type, index) => {
+                              if (type.includes(searchString)) {
+                                return (
+                                  <Text
+                                    style={{
+                                      fontFamily: 'Pretendard-SemiBold',
+                                      fontSize: 14,
+                                      color: '#1CD7AE',
+                                      lineHeight: 14,
+                                    }}
+                                    key={index}>{`${type} `}</Text>
+                                );
+                              }
+                            })}
+                          </View>
                           <Text
                             style={{
                               fontFamily: 'Pretendard-Regular',

@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import AroundMainScreen from './AroundMainScreen';
 import NotificationScreen from './NotificationScreen';
+import DeliveryDetailScreen from './DeliveryDetailScreen';
 
 // 스택 필요
 
@@ -22,11 +23,11 @@ const AroundScreen = () => {
         options={{headerShown: false}}
       /> */}
       {/* // 전달 상세 화면 */}
-      {/* <AroundStack.Screen
-        name="Search"
-        component={OrderScreen}
+      <AroundStack.Screen
+        name="DeliveryDetail"
+        component={DeliveryDetailScreen}
         options={{headerShown: false}}
-      /> */}
+      />
       <AroundStack.Screen
         name="Notification"
         component={NotificationScreen}

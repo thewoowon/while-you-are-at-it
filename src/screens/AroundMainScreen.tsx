@@ -15,7 +15,7 @@ import BottomSheet, {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import NaverMap from '../components/NaverMap';
-import {ListIcon, RingIcon, GPSIcon} from '../components/Icons';
+import {SearchIcon, RingIcon, GPSIcon} from '../components/Icons';
 import {CONTENTS_DATA} from '../data';
 import Animated, {
   useAnimatedStyle,
@@ -71,15 +71,15 @@ const AroundMainScreen = ({navigation, route}: any) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 13,
+            gap: 6,
             paddingLeft: 20,
             paddingRight: 20,
           }}>
           <View style={styles.inputBox}>
-            <ListIcon />
+            <SearchIcon color="#8E979E" />
             <TextInput
               style={styles.input}
-              placeholder="내 주변 전달 검색"
+              placeholder="업체 찾기"
               placeholderTextColor={'#8E979E'}
               value={text}
               onChangeText={setText}
@@ -114,6 +114,7 @@ const AroundMainScreen = ({navigation, route}: any) => {
           // BottomSheet는 처음에 펼쳐진 상태로 시작
           index={0}
           // 일단 스냅 포인트는 300, 550으로 설정
+          handleIndicatorStyle={{backgroundColor: '#E6EAED'}}
           snapPoints={snapPoints}
           enablePanDownToClose
           enableDynamicSizing={false}
@@ -146,7 +147,13 @@ const AroundMainScreen = ({navigation, route}: any) => {
               gap: 20,
             }}>
             {CONTENTS_DATA.map((content, index) => (
-              <PassItem key={index} passItem={content} />
+              <PassItem
+                key={index}
+                passItem={content}
+                onPress={() => {
+                  navigation.navigate('DeliveryDetail', {passItem: content});
+                }}
+              />
             ))}
           </BottomSheetScrollView>
         </BottomSheet>
@@ -198,7 +205,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 7,
-    borderRadius: 6,
+    borderRadius: 100,
     backgroundColor: 'white',
   },
   input: {

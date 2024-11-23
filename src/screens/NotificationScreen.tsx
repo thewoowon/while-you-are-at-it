@@ -53,7 +53,7 @@ const NotificationScreen = ({navigation, route}: any) => {
                     style={{
                       color: '#394245',
                       fontSize: 16,
-                      fontFamily: 'Pretendard-SeimBold',
+                      fontFamily: 'Pretendard-SemiBold',
                     }}>
                     {notification.title}
                   </Text>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: '#1F1F1F',
     fontSize: 18,
-    fontFamily: 'Pretendard-SeimBold',
+    fontFamily: 'Pretendard-SemiBold',
   },
   notificationItem: {
     padding: 20,

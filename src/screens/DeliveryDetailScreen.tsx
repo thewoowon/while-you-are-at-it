@@ -1,9 +1,18 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+  TextInput,
+  Pressable,
+  Animated,
+} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import MyCamera from '../components/MyCamera';
 
-const CameraScreen = () => {
+const DeliveryDetailScreen = () => {
   return (
     <GestureHandlerRootView style={styles.container}>
       <StatusBar
@@ -12,7 +21,9 @@ const CameraScreen = () => {
         translucent={false}
       />
       <SafeAreaView style={styles.backgroundStyle}>
-        <MyCamera />
+        <View style={styles.container}>
+          <Text>Delivery Detail Screen</Text>
+        </View>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
@@ -27,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CameraScreen;
+export default DeliveryDetailScreen;

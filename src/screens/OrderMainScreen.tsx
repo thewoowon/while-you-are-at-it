@@ -74,7 +74,7 @@ const OrderMainScreen = ({navigation, route}: any) => {
                     style={{
                       color: '#394245',
                       fontSize: 16,
-                      fontFamily: 'Pretendard-SeimBold',
+                      fontFamily: 'Pretendard-SemiBold',
                     }}>
                     {order.title}
                   </Text>

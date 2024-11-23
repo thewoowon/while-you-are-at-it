@@ -6,6 +6,7 @@ import CompanyInfoScreen from './CompanyInfoScreen';
 import OrderSheetScreen from './OrderSheetScreen';
 import CameraScreen from './CameraScreen';
 import NotificationScreen from './NotificationScreen';
+import CompleteScreen from './CompleteScreen';
 
 // 스택 필요
 
@@ -42,6 +43,11 @@ const OrderScreen = () => {
       <OrderStack.Screen
         name="Notification"
         component={NotificationScreen}
+        options={{headerShown: false}}
+      />
+      <OrderStack.Screen
+        name="Complete"
+        component={CompleteScreen}
         options={{headerShown: false}}
       />
     </OrderStack.Navigator>
