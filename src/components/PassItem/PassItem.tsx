@@ -3,11 +3,12 @@ import {View, Pressable, Text, StyleSheet} from 'react-native';
 
 type PassItemProps = {
   passItem: ContentsType;
+  onPress: () => void;
 };
 
-export default function PassItem({passItem}: PassItemProps) {
+export default function PassItem({passItem, onPress}: PassItemProps) {
   return (
-    <Pressable style={styles.contents}>
+    <Pressable style={styles.contents} onPress={onPress}>
       <View
         style={{
           width: '100%',
