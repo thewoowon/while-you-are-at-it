@@ -15,6 +15,7 @@ import {
   OrderIcon,
   MyIcon,
 } from './src/components/Icons';
+import {Text} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,6 +35,11 @@ function App(): React.JSX.Element {
       }}>
       <Tab.Navigator
         screenOptions={{
+          // 간격 조정
+          tabBarStyle: {
+            height: 86,
+            paddingVertical: 10,
+          },
           tabBarItemStyle: {
             display: 'flex',
             flexDirection: 'column',
@@ -46,13 +52,27 @@ function App(): React.JSX.Element {
             fontFamily: 'Pretendard-Medium',
             color: '#8E979E',
           },
+          tabBarActiveTintColor: 'blue', // 활성화된 탭의 텍스트 색상
+          tabBarInactiveTintColor: 'gray', // 비활성화된 탭의 텍스트 색상
         }}>
         <Tab.Screen
           name="주변"
           component={AroundScreen}
           options={{
             headerShown: false,
-            tabBarIcon: () => <AroundIcon />,
+            tabBarIcon: ({focused, color}) => (
+              <AroundIcon color={focused ? 'black' : '#C7CDD1'} />
+            ),
+            tabBarLabel: ({focused, color}) => (
+              <Text
+                style={{
+                  fontFamily: 'Pretendard-Medium',
+                  fontSize: 13,
+                  color: focused ? '#192628' : '#8E979E',
+                }}>
+                주변
+              </Text>
+            ),
           }}
         />
         <Tab.Screen
@@ -60,7 +80,19 @@ function App(): React.JSX.Element {
           component={DeliveryScreen}
           options={{
             headerShown: false,
-            tabBarIcon: () => <DeliveryIcon />,
+            tabBarIcon: ({focused, color}) => (
+              <DeliveryIcon color={focused ? 'black' : '#C7CDD1'} />
+            ),
+            tabBarLabel: ({focused, color}) => (
+              <Text
+                style={{
+                  fontFamily: 'Pretendard-Medium',
+                  fontSize: 13,
+                  color: focused ? '#192628' : '#8E979E',
+                }}>
+                주변
+              </Text>
+            ),
           }}
         />
         <Tab.Screen
@@ -68,7 +100,19 @@ function App(): React.JSX.Element {
           component={OrderScreen}
           options={{
             headerShown: false,
-            tabBarIcon: () => <OrderIcon />,
+            tabBarIcon: ({focused, color}) => (
+              <OrderIcon color={focused ? 'black' : '#C7CDD1'} />
+            ),
+            tabBarLabel: ({focused, color}) => (
+              <Text
+                style={{
+                  fontFamily: 'Pretendard-Medium',
+                  fontSize: 13,
+                  color: focused ? '#192628' : '#8E979E',
+                }}>
+                주변
+              </Text>
+            ),
           }}
         />
         <Tab.Screen
@@ -76,7 +120,19 @@ function App(): React.JSX.Element {
           component={MyScreen}
           options={{
             headerShown: false,
-            tabBarIcon: () => <MyIcon />,
+            tabBarIcon: ({focused, color}) => (
+              <MyIcon color={focused ? 'black' : '#C7CDD1'} />
+            ),
+            tabBarLabel: ({focused, color}) => (
+              <Text
+                style={{
+                  fontFamily: 'Pretendard-Medium',
+                  fontSize: 13,
+                  color: focused ? '#192628' : '#8E979E',
+                }}>
+                주변
+              </Text>
+            ),
           }}
         />
       </Tab.Navigator>
