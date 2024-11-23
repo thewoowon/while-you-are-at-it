@@ -13,3 +13,5 @@ export {default as LeftArrowIcon} from './LeftArrowIcon';
 export {default as MiniStarIcon} from './MiniStarIcon';
 export {default as MiniWatchIcon} from './MiniWatchIcon';
 export {default as MiniPhoneIcon} from './MiniPhoneIcon';
+export {default as CameraIcon} from './CameraIcon';
+export {default as BigHeartIcon} from './BigHeartIcon';
