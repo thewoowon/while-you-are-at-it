@@ -4,6 +4,8 @@ export const CONTENTS_DATA: ContentsType[] = [
     from: '성수역',
     to: '노원역',
     title: '성수에서 노원으로 오시는 분 계신가요?ㅜㅜ',
+    description:
+      '종로3가쪽에 거래업체있으시면 경로보고 전달해드릴게요! 25일전까지 저녁 6시 이후에 아무때나 수령가능합니다. 신청할 때 전달 가능 시간만 체크해주세요!!',
     period: '8월 25일(금)부터 8월 27일(일)까지',
     enableTime: '저녁 6시 이후',
     category: 'passItOn',
@@ -14,6 +16,8 @@ export const CONTENTS_DATA: ContentsType[] = [
     from: '하계역 부근',
     to: '을지로역',
     title: '돌아가면서 전달해줄 팀 모집해요!',
+    description:
+      '종로3가쪽에 거래업체있으시면 경로보고 전달해드릴게요! 25일전까지 저녁 6시 이후에 아무때나 수령가능합니다. 신청할 때 전달 가능 시간만 체크해주세요!!',
     category: 'recruitment',
     processStatus: 'processing',
     participants: 5,
@@ -24,6 +28,8 @@ export const CONTENTS_DATA: ContentsType[] = [
     from: '성수역',
     to: '노원역',
     title: '종로 3가 근처 전달해드려요',
+    description:
+      '종로3가쪽에 거래업체있으시면 경로보고 전달해드릴게요! 25일전까지 저녁 6시 이후에 아무때나 수령가능합니다. 신청할 때 전달 가능 시간만 체크해주세요!!',
     startTime: '8월 25일(금) 오전 10:00',
     pickUpLocation: '공릉동 철길사거리',
     destination: '종로3가',
@@ -37,6 +43,8 @@ export const CONTENTS_DATA: ContentsType[] = [
     from: '성수역',
     to: '노원역',
     title: '성수에서 노원으로 오시는 분 계신가요?ㅜㅜ',
+    description:
+      '종로3가쪽에 거래업체있으시면 경로보고 전달해드릴게요! 25일전까지 저녁 6시 이후에 아무때나 수령가능합니다. 신청할 때 전달 가능 시간만 체크해주세요!!',
     period: '8월 25일(금)부터 8월 27일(일)까지',
     enableTime: '저녁 6시 이후',
     category: 'passItOn',
@@ -47,6 +55,8 @@ export const CONTENTS_DATA: ContentsType[] = [
     from: '하계역 부근',
     to: '을지로역',
     title: '돌아가면서 전달해줄 팀 모집해요!',
+    description:
+      '종로3가쪽에 거래업체있으시면 경로보고 전달해드릴게요! 25일전까지 저녁 6시 이후에 아무때나 수령가능합니다. 신청할 때 전달 가능 시간만 체크해주세요!!',
     category: 'recruitment',
     processStatus: 'processing',
     participants: 5,
@@ -57,6 +67,8 @@ export const CONTENTS_DATA: ContentsType[] = [
     from: '성수역',
     to: '노원역',
     title: '종로 3가 근처 전달해드려요',
+    description:
+      '종로3가쪽에 거래업체있으시면 경로보고 전달해드릴게요! 25일전까지 저녁 6시 이후에 아무때나 수령가능합니다. 신청할 때 전달 가능 시간만 체크해주세요!!',
     startTime: '8월 25일(금) 오전 10:00',
     pickUpLocation: '공릉동 철길사거리',
     destination: '종로3가',

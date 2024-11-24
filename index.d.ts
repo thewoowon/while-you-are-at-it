@@ -19,6 +19,7 @@ type ContentsType = {
   from: string;
   to: string;
   title: string;
+  description: string;
   period?: string;
   enableTime?: string;
   startTime?: string;
