@@ -16,6 +16,7 @@ import {
   MyIcon,
 } from './src/components/Icons';
 import {Text} from 'react-native';
+import Toast from 'react-native-toast-message';
 
 const Tab = createBottomTabNavigator();
 
@@ -136,6 +137,7 @@ function App(): React.JSX.Element {
           }}
         />
       </Tab.Navigator>
+      <Toast />
     </NavigationContainer>
   );
 }
