@@ -91,7 +91,7 @@ function App(): React.JSX.Element {
                   fontSize: 13,
                   color: focused ? '#192628' : '#8E979E',
                 }}>
-                주변
+                전달
               </Text>
             ),
           }}
@@ -111,7 +111,7 @@ function App(): React.JSX.Element {
                   fontSize: 13,
                   color: focused ? '#192628' : '#8E979E',
                 }}>
-                주변
+                주문
               </Text>
             ),
           }}
@@ -131,7 +131,7 @@ function App(): React.JSX.Element {
                   fontSize: 13,
                   color: focused ? '#192628' : '#8E979E',
                 }}>
-                주변
+                내 정보
               </Text>
             ),
           }}
