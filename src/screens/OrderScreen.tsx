@@ -23,7 +23,7 @@ const OrderScreen = () => {
       <OrderStack.Screen
         name="Search"
         component={SearchScreen}
-        options={{headerShown: false}}
+        options={{headerShown: false, animationEnabled: false}}
       />
       <OrderStack.Screen
         name="CompanyInfo"

@@ -79,13 +79,15 @@ export const CONTENTS_DATA: ContentsType[] = [
   },
 ];
 
-export const ORDER_DATA: OrderType[] = [
+// 현재 진행중인 주문
+export const CURRENT_ORDER_DATA: OrderType[] = [
   {
     id: 'GX-1234',
     title: '배달원 모집',
     description: '배달원을 모집합니다. 주소: 서울시 성수동',
     price: 10000,
     dueDate: '2021-08-27',
+    status: '주문 수락 전',
   },
   {
     id: 'GX-1235',
@@ -93,6 +95,27 @@ export const ORDER_DATA: OrderType[] = [
     description: '배달원을 모집합니다. 주소: 서울시 성수동',
     price: 10000,
     dueDate: '2021-08-27',
+    status: '작업완료',
+  },
+];
+
+// 이전에 진행했던 주문
+export const PREVIOUS_ORDER_DATA: OrderType[] = [
+  {
+    id: 'GX-1234',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+    status: '수령완료',
+  },
+  {
+    id: 'GX-1235',
+    title: '배달원 모집',
+    description: '배달원을 모집합니다. 주소: 서울시 성수동',
+    price: 10000,
+    dueDate: '2021-08-27',
+    status: '수령완료',
   },
   {
     id: 'GX-1236',
@@ -100,6 +123,7 @@ export const ORDER_DATA: OrderType[] = [
     description: '배달원을 모집합니다. 주소: 서울시 성수동',
     price: 10000,
     dueDate: '2021-08-27',
+    status: '수령완료',
   },
   {
     id: 'GX-1237',
@@ -107,6 +131,7 @@ export const ORDER_DATA: OrderType[] = [
     description: '배달원을 모집합니다. 주소: 서울시 성수동',
     price: 10000,
     dueDate: '2021-08-27',
+    status: '수령완료',
   },
   {
     id: 'GX-1238',
@@ -114,34 +139,7 @@ export const ORDER_DATA: OrderType[] = [
     description: '배달원을 모집합니다. 주소: 서울시 성수동',
     price: 10000,
     dueDate: '2021-08-27',
-  },
-  {
-    id: 'GX-1239',
-    title: '배달원 모집',
-    description: '배달원을 모집합니다. 주소: 서울시 성수동',
-    price: 10000,
-    dueDate: '2021-08-27',
-  },
-  {
-    id: 'GX-1240',
-    title: '배달원 모집',
-    description: '배달원을 모집합니다. 주소: 서울시 성수동',
-    price: 10000,
-    dueDate: '2021-08-27',
-  },
-  {
-    id: 'GX-1241',
-    title: '배달원 모집',
-    description: '배달원을 모집합니다. 주소: 서울시 성수동',
-    price: 10000,
-    dueDate: '2021-08-27',
-  },
-  {
-    id: 'GX-1242',
-    title: '배달원 모집',
-    description: '배달원을 모집합니다. 주소: 서울시 성수동',
-    price: 10000,
-    dueDate: '2021-08-27',
+    status: '수령완료',
   },
 ];
 

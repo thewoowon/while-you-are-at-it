@@ -1,41 +1,34 @@
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  TextInput,
-  Pressable,
-  Animated,
-} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import DeliveryMainScreen from './DeliveryMainScreen';
+import DeliveryDetailScreen from './DeliveryDetailScreen';
+import DeliveryCreateScreen from './DeliveryCreateScreen';
 
-const DeliveryScreen = () => {
+// 스택 필요
+
+const AroundStack = createStackNavigator();
+
+const DeliveryScreen = ({navigation, route}: any) => {
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="#6a51ae"
-        translucent={false}
+    <AroundStack.Navigator>
+      <AroundStack.Screen
+        name="DeliveryMain"
+        component={DeliveryMainScreen}
+        options={{headerShown: false}}
       />
-      <SafeAreaView style={styles.backgroundStyle}>
-        <View style={styles.container}>
-          <Text>Delivery Screen</Text>
-        </View>
-      </SafeAreaView>
-    </GestureHandlerRootView>
+      <AroundStack.Screen
+        name="DeliveryCreate"
+        component={DeliveryCreateScreen}
+        options={{headerShown: false}}
+      />
+      {/* // 전달 상세 화면 */}
+      <AroundStack.Screen
+        name="DeliveryDetail"
+        component={DeliveryDetailScreen}
+        options={{headerShown: false}}
+      />
+    </AroundStack.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  backgroundStyle: {
-    flex: 1,
-  },
-});
 
 export default DeliveryScreen;

@@ -24,7 +24,12 @@ import {
 } from '../components/Icons/material';
 import {useDebounce} from '../hooks';
 import {SEARCH_DATA} from '../data';
-import {DownChevronIcon, LeftArrowIcon} from '../components/Icons';
+import {
+  DownChevronIcon,
+  LeftArrowIcon,
+  LeftChevronIcon,
+  RingIcon,
+} from '../components/Icons';
 
 export const imageMap: {
   [key: string]: any;
@@ -108,27 +113,38 @@ const SearchScreen = ({navigation, route}: any) => {
         translucent={false}
       />
       <SafeAreaView style={styles.backgroundStyle}>
-        <View style={styles.header}>
-          {/* 상단 헤더 */}
-
-          <Pressable
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <LeftArrowIcon />
-          </Pressable>
-          <View
-            style={{
-              flex: 1,
-            }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 6,
+            paddingLeft: 20,
+            paddingRight: 20,
+          }}>
+          <View style={styles.inputBox}>
+            <Pressable
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <LeftChevronIcon />
+            </Pressable>
             <TextInput
               style={styles.input}
-              placeholder="내 주변 전달 검색"
+              placeholder="업체 찾기"
               placeholderTextColor={'#8E979E'}
               value={searchString}
               onChangeText={setSearchString}
             />
           </View>
+          <Pressable
+            style={styles.ring}
+            onPress={() => {
+              navigation.navigate('Notification');
+            }}>
+            <RingIcon />
+          </Pressable>
         </View>
         {searchString.length > 0 && searchResult.length > 0 && (
           <View
@@ -369,17 +385,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Pretendard-ExtraBold',
   },
-  input: {
+  inputBox: {
     flex: 1,
     height: 44,
-    paddingTop: 14,
-    paddingBottom: 14,
-    paddingLeft: 19,
-    paddingRight: 19,
-    borderRadius: 6,
+    padding: 14,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 7,
+    borderRadius: 100,
     backgroundColor: '#F2F4F6',
+  },
+  input: {
     fontSize: 16,
-    width: '100%',
+  },
+  ring: {
+    width: 44,
+    height: 44,
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
