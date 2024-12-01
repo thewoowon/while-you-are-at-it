@@ -1300,6 +1300,27 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-worklets-core (1.5.0):
+    - DoubleConversion
+    - glog
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - React-nativeconfig (0.76.1)
   - React-NativeModulesApple (0.76.1):
     - glog
@@ -1550,6 +1571,27 @@ PODS:
     - React-logger (= 0.76.1)
     - React-perflogger (= 0.76.1)
     - React-utils (= 0.76.1)
+  - RNCPicker (2.10.1):
+    - DoubleConversion
+    - glog
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNGestureHandler (2.20.2):
     - DoubleConversion
     - glog
@@ -1791,10 +1833,16 @@ PODS:
   - SocketRocket (0.7.1)
   - VisionCamera (4.6.1):
     - VisionCamera/Core (= 4.6.1)
+    - VisionCamera/FrameProcessors (= 4.6.1)
     - VisionCamera/React (= 4.6.1)
   - VisionCamera/Core (4.6.1)
+  - VisionCamera/FrameProcessors (4.6.1):
+    - React
+    - React-callinvoker
+    - react-native-worklets-core
   - VisionCamera/React (4.6.1):
     - React-Core
+    - VisionCamera/FrameProcessors
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1837,6 +1885,7 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
+  - react-native-worklets-core (from `../node_modules/react-native-worklets-core`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1863,6 +1912,7 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -1949,6 +1999,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
+  react-native-worklets-core:
+    :path: "../node_modules/react-native-worklets-core"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -2001,6 +2053,8 @@ EXTERNAL SOURCES:
     :path: build/generated/ios
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNPermissions:
@@ -2055,6 +2109,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: fcc774f908265f6169aad2e3e91727ad4110f998
   react-native-safe-area-context: 73505107f7c673cd550a561aeb6271f152c483b6
   react-native-webview: db22fd5bb2d639eb6493fe8883e7f1f5d961ede7
+  react-native-worklets-core: 0e73295ce149697f5352d6797d5c1e775d84be33
   React-nativeconfig: 93fe8c85a8c40820c57814e30f3e44b94c995a7b
   React-NativeModulesApple: ae1a2dd7d436ac8b559ee14e6122bc0f66586ee3
   React-perflogger: 1c55bcd3c392137cbaf0d21d8bb87ce9a0cebb15
@@ -2081,6 +2136,7 @@ SPEC CHECKSUMS:
   React-utils: f27d9a0ea31518a94faf1554eb3535fd0bbd6fdf
   ReactCodegen: 99e6fbdfffe5dc5f7ef23a40d27b01204cbb8c3f
   ReactCommon: 8a0140acb60099a2beb4df4b0f19e738c1fe7d0b
+  RNCPicker: 9b3ae954c2f27a168e4827360da80561980b86d4
   RNGestureHandler: e6b0837f17a334b5208ca5abb45d35a19840f852
   RNPermissions: 6fac5ebf86c726cb62fa16638d35e1d574f0642b
   RNReanimated: d0033e3643f3dd1621cdbcd1079a7be31801d16c
@@ -2088,7 +2144,7 @@ SPEC CHECKSUMS:
   RNSVG: c7a701e9347b7cda97bce80c413aa68b5ac752b7
   RNVectorIcons: a1344e212e80e6e0f4537a9960148201175f4225
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  VisionCamera: c95a8ad535f527562be1fb05fb2fd324578e769c
+  VisionCamera: ec141897a88c2e95e8b83cf97b8e4db801e02fd6
   Yoga: 157bed1c62656587df4639d4dc29714898f8fb10
 
 PODFILE CHECKSUM: 621ff705b8ac9bc8b69d6140b4f3515acb7e34ba
