@@ -38,6 +38,8 @@ type OrderType = {
   price: number;
   // 예상작업완료일
   dueDate: string;
+  // 상태
+  status: string;
 };
 
 type NotificationType = {
