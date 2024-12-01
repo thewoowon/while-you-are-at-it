@@ -16,3 +16,6 @@ export {default as MiniPhoneIcon} from './MiniPhoneIcon';
 export {default as CameraIcon} from './CameraIcon';
 export {default as BigHeartIcon} from './BigHeartIcon';
 export {default as ProfileIcon} from './ProfileIcon';
+export {default as KakaoIcon} from './KakaoIcon';
+export {default as PenIcon} from './PenIcon';
+export {default as BottomTriangleIcon} from './BottomTriangleIcon';
