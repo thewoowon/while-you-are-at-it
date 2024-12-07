@@ -80,7 +80,7 @@ const DeliveryMainScreen = ({navigation, route}: any) => {
               fontFamily: 'Pretendard-SemiBold',
               paddingBottom: 16,
             }}>
-            진행 중인 주문
+            전달
           </Text>
           <View
             style={{
