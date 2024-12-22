@@ -19,3 +19,8 @@ export {default as ProfileIcon} from './ProfileIcon';
 export {default as KakaoIcon} from './KakaoIcon';
 export {default as PenIcon} from './PenIcon';
 export {default as BottomTriangleIcon} from './BottomTriangleIcon';
+export {default as LogoIcon} from './LogoIcon';
+export {default as NaverIcon} from './NaverIcon';
+export {default as GoogleIcon} from './GoogleIcon';
+export {default as RemoveIcon} from './RemoveIcon';
+export {default as RefreshIcon} from './RefreshIcon';
