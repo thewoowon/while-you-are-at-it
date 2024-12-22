@@ -24,6 +24,9 @@ target 'WhileYouAreAtIt' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # Google Sign-In 추가
+  pod 'GoogleSignIn', '~> 7.1.0' # 현재 Podfile.lock에 기록된 버전
+
   target 'WhileYouAreAtItTests' do
     inherit! :complete
     # Pods for testing
