@@ -3,6 +3,10 @@ declare module '@env' {
   export const GOOGLE_MAP_API_KEY: string;
   export const NAVER_MAP_CLIENT_ID: string;
   export const NAVER_MAP_CLIENT_SECRET: string;
+  export const GOOGLE_IOS_CLIENT_ID: string;
+  export const GOOGLE_IOS_URL_SCHEME: string;
+  export const GOOGLE_AOS_CLIENT_ID: string;
+  export const GOOGLE_SHA1: string;
 }
 
 declare module '*.svg' {
