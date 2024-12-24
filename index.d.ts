@@ -120,3 +120,8 @@ type UserType = {
   address: string;
   src: string;
 };
+
+interface AuthContextType {
+  isAuthenticated: boolean;
+  setIsAuthenticated: (value: boolean) => void;
+}
