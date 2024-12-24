@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
+    lineHeight: 16,
   },
   ring: {
     width: 44,

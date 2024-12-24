@@ -7,36 +7,29 @@ import {
   Image,
   Text,
   Pressable,
+  Platform,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {GoogleIcon, KakaoIcon, NaverIcon} from '../components/Icons';
 import {authorize} from 'react-native-app-auth';
-import {Platform} from 'react-native';
-import {GOOGLE_IOS_CLIENT_ID, GOOGLE_AOS_CLIENT_ID} from '@env';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import axios from 'axios';
+import {API_PREFIX} from '../constants';
+import Toast from 'react-native-toast-message';
+import {login} from '../services/auth';
+import {useAuth} from '../hooks';
 
 const BASE_URL = Platform.select({
   ios: 'http://127.0.0.1:8000', // iOS 시뮬레이터
-  android: 'http://10.0.2.2:8000', // Android 에뮬레이터
-});
-
-const GOOGLE_CLIENT_ID = Platform.select({
-  ios: GOOGLE_IOS_CLIENT_ID,
-  android: GOOGLE_AOS_CLIENT_ID,
+  android: 'http://127.0.0.1:8000', // Android 에뮬레이터
 });
 
 const LoginScreen = ({navigation, route}: any) => {
-  const googleConfig = {
-    issuer: 'https://accounts.google.com',
-    clientId: GOOGLE_CLIENT_ID || '',
-    redirectUrl: 'com.yourapp:/oauth2redirect/google',
-    scopes: ['openid', 'profile', 'email'],
-  };
-
+  const {setIsAuthenticated} = useAuth();
   const naverConfig = {
     issuer: 'https://nid.naver.com',
     clientId: 'YOUR_NAVER_CLIENT_ID',
@@ -52,11 +45,6 @@ const LoginScreen = ({navigation, route}: any) => {
     scopes: ['profile'],
   };
 
-  GoogleSignin.configure({
-    iosClientId: GOOGLE_IOS_CLIENT_ID,
-    webClientId: GOOGLE_AOS_CLIENT_ID,
-  });
-
   const googleLogin = async () => {
     try {
       // Google Play 서비스 확인
@@ -67,7 +55,32 @@ const LoginScreen = ({navigation, route}: any) => {
       if (hasPlayService) {
         // Google 로그인 시도
         const userInfo = await GoogleSignin.signIn();
-        console.log('User Info:', JSON.stringify(userInfo));
+
+        // 서버로 토큰 전달
+        const response = await axios.post(
+          `${BASE_URL}${API_PREFIX}/auth/google/`,
+          {
+            id_token: userInfo.data?.idToken,
+          },
+        );
+
+        if (response.status === 200) {
+          await login({
+            access_token: response.data.access_token,
+            refresh_token: response.data.refresh_token,
+          });
+          Toast.show({
+            type: 'success',
+            text1: '로그인 성공',
+            text2: '환영합니다!',
+          });
+
+          if (!response.data.user.nickname) {
+            navigation.navigate('Nickname');
+          } else {
+            setIsAuthenticated(true);
+          }
+        }
       }
     } catch (error: any) {
       // 에러 코드별 처리
@@ -83,36 +96,46 @@ const LoginScreen = ({navigation, route}: any) => {
     }
   };
 
-  const loginWithGoogle = async () => {
-    try {
-      const result = await authorize(googleConfig);
-      console.log('Google Login Result:', result);
-      // result.accessToken 또는 result.authorizationCode를 백엔드로 전달
-    } catch (error) {
-      console.error('Google Login Error:', error);
-    }
-  };
-
   const loginWithNaver = async () => {
     try {
       const result = await authorize(naverConfig);
-      console.log('Naver Login Result:', result);
+
+      // 서버로 토큰 전달
+      const response = await axios.post(
+        `${BASE_URL}${API_PREFIX}/auth/naver/`,
+        {
+          access_token: result.accessToken,
+        },
+      );
+
+      if (response.status === 200) {
+        navigation.navigate('Nickname');
+      }
     } catch (error) {
-      console.error('Naver Login Error:', error);
+      console.log('네이버 로그인 에러:', error);
     }
   };
 
   const loginWithKakao = async () => {
     try {
       const result = await authorize(kakaoConfig);
-      console.log('Kakao Login Result:', result);
+
+      // 서버로 토큰 전달
+      const response = await axios.post(
+        `${BASE_URL}${API_PREFIX}/auth/kakao/`,
+        {
+          access_token: result.accessToken,
+        },
+      );
+
+      if (response.status === 200) {
+        navigation.navigate('Nickname');
+      }
     } catch (error) {
-      console.error('Kakao Login Error:', error);
+      console.log('카카오 로그인 에러:', error);
     }
   };
-  const onPress = () => {
-    navigation.navigate('Nickname');
-  };
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <StatusBar

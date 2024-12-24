@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -7,29 +7,79 @@ import {
   View,
   TextInput,
   Pressable,
+  Platform,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {LeftChevronIcon, RefreshIcon, RemoveIcon} from '../components/Icons';
+import {LeftArrowIcon, RefreshIcon, RemoveIcon} from '../components/Icons';
+import {useAuth} from '../hooks';
+import axios from 'axios';
+import {API_PREFIX} from '../constants';
+import {useDebounce} from '../hooks';
+
+const BASE_URL = Platform.select({
+  ios: 'http://127.0.0.1:8000', // iOS 시뮬레이터
+  android: 'http://127.0.0.1:8000', // Android 에뮬레이터
+});
 
 const NicknameScreen = ({navigation, route}: any) => {
   const [nickname, setNickname] = useState('');
-  const [warning, setWarning] = useState(
-    '닉네임은 최소 2글자 이상이어야 합니다',
-  );
+  const [warning, setWarning] = useState('');
+  const {setIsAuthenticated} = useAuth();
+  const [isNicknameValid, setIsNicknameValid] = useState(false);
+  const debouncedString = useDebounce(nickname, 500);
 
-  const onChangeText = (text: string) => {
+  const onChangeText = async (text: string) => {
     setNickname(text);
-    if (text.length < 2) {
+    // 유효하다면
+    if (await validationCheck(text)) {
+      setIsNicknameValid(true);
+      return;
+    }
+
+    setIsNicknameValid(false);
+  };
+
+  const validationCheck = async (nickname: string): Promise<boolean> => {
+    if (nickname.length < 2) {
       setWarning('닉네임은 최소 2글자 이상이어야 합니다');
-    } else {
-      setWarning('');
+      return false;
+    }
+
+    const response = await axios.get(
+      `${BASE_URL}${API_PREFIX}/users/nickname/${nickname}`,
+    );
+
+    if (!response.data.is_available) {
+      setWarning('존재하는 닉네임입니다');
+      return false;
+    }
+
+    const regex = /씨발|새끼/g;
+
+    if (regex.test(nickname)) {
+      setWarning('비속어는 포함할 수 없습니다');
+      return false;
+    }
+
+    setWarning('사용할 수 있는 닉네임입니다');
+    return true;
+  };
+  const onComplete = async () => {
+    if (isNicknameValid) {
+      const response = await axios.put(`${BASE_URL}${API_PREFIX}/users/me`, {
+        nickname,
+      });
+
+      if (response.status === 201) {
+        setIsAuthenticated(true);
+      }
     }
   };
 
-  // 닉네임은 최소 2글자 이상이어야 합니다
-  // 존재하는 닉네임입니다
-  // 사용할 수 있는 닉네임입니다
-  // 비속어는 포함할 수 없습니다
+  useEffect(() => {
+    onChangeText(debouncedString);
+  }, [debouncedString]);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <StatusBar
@@ -51,7 +101,7 @@ const NicknameScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
           </View>
           <Text style={styles.headerText}>{'프로필 설정'}</Text>
@@ -66,13 +116,13 @@ const NicknameScreen = ({navigation, route}: any) => {
                 placeholderTextColor={'#8E979E'}
                 defaultValue=""
                 value={nickname}
-                onChangeText={onChangeText}
+                onChangeText={setNickname}
               />
               <View style={styles.iconContainer}>
                 {nickname.length > 0 ? (
                   <Pressable
                     onPress={() => {
-                      navigation.goBack();
+                      setNickname('');
                     }}>
                     <RemoveIcon />
                   </Pressable>
@@ -80,15 +130,59 @@ const NicknameScreen = ({navigation, route}: any) => {
                 {nickname.length > 0 ? (
                   <Pressable
                     onPress={() => {
-                      navigation.goBack();
+                      validationCheck(nickname);
                     }}>
                     <RefreshIcon />
                   </Pressable>
                 ) : null}
               </View>
             </View>
-            <Text style={styles.warning}>{warning}</Text>
+            <Text
+              style={{
+                ...styles.warning,
+                color: isNicknameValid ? '#1CD7AE' : '#FF0000',
+              }}>
+              {warning}
+            </Text>
           </View>
+        </View>
+        <View
+          style={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingTop: 16,
+            paddingBottom: 16,
+            paddingLeft: 20,
+            paddingRight: 20,
+            gap: 7,
+          }}>
+          <Pressable
+            onPress={onComplete}
+            disabled={!isNicknameValid}
+            style={({pressed}) => [
+              {
+                width: '100%',
+                padding: 16,
+                borderRadius: 12,
+                backgroundColor: '#1CD7AE',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+              {backgroundColor: pressed ? '#0BBDA1' : '#1CD7AE'},
+            ]}>
+            <Text
+              style={{
+                color: '#FFFFFF',
+                fontSize: 16,
+                fontFamily: 'Pretendard-SemiBold',
+              }}>
+              가입 완료하기
+            </Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     </GestureHandlerRootView>
@@ -150,6 +244,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   layout: {
+    flex: 1,
     paddingTop: 40,
     paddingLeft: 20,
     paddingRight: 20,
