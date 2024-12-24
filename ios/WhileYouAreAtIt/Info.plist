@@ -6,8 +6,12 @@
 		<string>en</string>
 		<key>CFBundleDisplayName</key>
 		<string>WhileYouAreAtIt</string>
+		<key>NSFaceIDUsageDescription</key>
+		<string>This app uses Face ID to authenticate you securely.</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>org.reactjs.native.example.WhileYouAreAtIt</string>
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
@@ -33,6 +37,8 @@
 		</array>
 		<key>CFBundleVersion</key>
 		<string>$(CURRENT_PROJECT_VERSION)</string>
+		<key>GIDClientID</key>
+		<string>972192710903-234ucngm45hrmqs551hs6bu8dued8t8k.apps.googleusercontent.com</string>
 		<key>LSRequiresIPhoneOS</key>
 		<true />
 		<key>NSAppTransportSecurity</key>

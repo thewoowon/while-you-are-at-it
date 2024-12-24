@@ -1677,6 +1677,27 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNKeychain (9.2.2):
+    - DoubleConversion
+    - glog
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNPermissions (5.1.0):
     - DoubleConversion
     - glog
@@ -1984,6 +2005,7 @@ DEPENDENCIES:
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -2141,6 +2163,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
     :path: "../node_modules/@react-native-google-signin/google-signin"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
@@ -2231,6 +2255,7 @@ SPEC CHECKSUMS:
   RNCPicker: 9b3ae954c2f27a168e4827360da80561980b86d4
   RNGestureHandler: e6b0837f17a334b5208ca5abb45d35a19840f852
   RNGoogleSignin: e211ecf03428bfcfcc2d639c48daa50cd1209e27
+  RNKeychain: 067a602132b1bcdfb6807ed6b7b46f89c9b72c0e
   RNPermissions: 6fac5ebf86c726cb62fa16638d35e1d574f0642b
   RNReanimated: d0033e3643f3dd1621cdbcd1079a7be31801d16c
   RNScreens: 2a9a54bfad821bacd7b3e184c34256d8452071fe
@@ -2240,6 +2265,6 @@ SPEC CHECKSUMS:
   VisionCamera: ec141897a88c2e95e8b83cf97b8e4db801e02fd6
   Yoga: 157bed1c62656587df4639d4dc29714898f8fb10
 
-PODFILE CHECKSUM: 5c917c05622f892f2432ebc5db5bd00dea38823b
+PODFILE CHECKSUM: 2c4f24b45567a4dd7cef49cbb95ea81b59b9588f
 
 COCOAPODS: 1.16.2
