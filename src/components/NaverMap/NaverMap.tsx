@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {NAVER_MAP_CLIENT_ID} from '@env';
@@ -20,6 +20,11 @@ const NaverMap = () => {
         type="text/javascript"
         src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${clientId}"
       ></script>
+      <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        console.error('Script Error:', message, source, lineno, colno, error);
+      };
+    </script>
 
     </head>
     <body style="margin: 0 !important;padding: 0 !important;">
@@ -35,6 +40,10 @@ const NaverMap = () => {
     </body>
   </html>
   `;
+
+  useEffect(() => {
+    console.log('NaverMap rendered');
+  }, []);
 
   return (
     <View style={styles.container}>
