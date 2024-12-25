@@ -1,41 +1,51 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  TextInput,
-  Pressable,
-  Animated,
-} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {createStackNavigator} from '@react-navigation/stack';
+import MyMainScreen from './MyMainScreen';
+import PaymentDetailsScreen from './PaymentDetailsScreen';
+import InquiryDetailsScreen from './InquiryDetailsScreen';
+import ProfileEditScreen from './ProfileEditScreen';
+import CustomerServiceScreen from './CustomerServiceScreen';
+import AnnouncementScreen from './AnnouncementScreen';
+
+// 스택 필요
+
+const MyStack = createStackNavigator();
 
 const MyScreen = () => {
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="#6a51ae"
-        translucent={false}
+    <MyStack.Navigator>
+      <MyStack.Screen
+        name="MyMain"
+        component={MyMainScreen}
+        options={{headerShown: false}}
       />
-      <SafeAreaView style={styles.backgroundStyle}>
-        <View style={styles.container}>
-          <Text>Order Screen</Text>
-        </View>
-      </SafeAreaView>
-    </GestureHandlerRootView>
+      <MyStack.Screen
+        name="PaymentDetails"
+        component={PaymentDetailsScreen}
+        options={{headerShown: false}}
+      />
+      <MyStack.Screen
+        name="InquiryDetails"
+        component={InquiryDetailsScreen}
+        options={{headerShown: false}}
+      />
+      <MyStack.Screen
+        name="ProfileEdit"
+        component={ProfileEditScreen}
+        options={{headerShown: false}}
+      />
+      <MyStack.Screen
+        name="CustomerService"
+        component={CustomerServiceScreen}
+        options={{headerShown: false}}
+      />
+      <MyStack.Screen
+        name="Announcement"
+        component={AnnouncementScreen}
+        options={{headerShown: false}}
+      />
+    </MyStack.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  backgroundStyle: {
-    flex: 1,
-  },
-});
 
 export default MyScreen;

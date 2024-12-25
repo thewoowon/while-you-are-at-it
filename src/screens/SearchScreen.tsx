@@ -24,12 +24,7 @@ import {
 } from '../components/Icons/material';
 import {useDebounce} from '../hooks';
 import {SEARCH_DATA} from '../data';
-import {
-  DownChevronIcon,
-  LeftArrowIcon,
-  LeftChevronIcon,
-  RingIcon,
-} from '../components/Icons';
+import {DownChevronIcon, LeftChevronIcon, RingIcon} from '../components/Icons';
 
 export const imageMap: {
   [key: string]: any;
@@ -368,22 +363,6 @@ const styles = StyleSheet.create({
   },
   backgroundStyle: {
     flex: 1,
-  },
-  header: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    paddingRight: 20,
-    paddingLeft: 16,
-    maxHeight: 50,
-    alignItems: 'center',
-    gap: 10,
-  },
-  headerText: {
-    color: '#C7CDD1',
-    fontSize: 20,
-    fontFamily: 'Pretendard-ExtraBold',
   },
   inputBox: {
     flex: 1,

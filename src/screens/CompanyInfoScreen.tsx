@@ -15,7 +15,7 @@ import {
   MiniStarIcon,
   MiniWatchIcon,
 } from '../components/Icons';
-import NaverMap from '../components/NaverMap';
+import {NewNaverMap} from '../components/NaverMap';
 import {COMPANY_DATA, REVIEW_DATA} from '../data';
 
 const CompanyInfoScreen = ({navigation, route}: any) => {
@@ -83,7 +83,7 @@ const CompanyInfoScreen = ({navigation, route}: any) => {
               height: 141,
               maxHeight: 141,
             }}>
-            <NaverMap />
+            <NewNaverMap />
           </View>
           <View
             style={{

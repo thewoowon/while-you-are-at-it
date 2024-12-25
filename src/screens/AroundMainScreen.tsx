@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState, useCallback} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -14,7 +14,7 @@ import BottomSheet, {
   BottomSheetView,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import NaverMap from '../components/NaverMap';
+import {NewNaverMap} from '../components/NaverMap';
 import {SearchIcon, RingIcon, GPSIcon} from '../components/Icons';
 import {CONTENTS_DATA} from '../data';
 import Animated, {
@@ -64,7 +64,7 @@ const AroundMainScreen = ({navigation, route}: any) => {
         translucent={false}
       />
       <SafeAreaView style={styles.backgroundStyle}>
-        <NaverMap />
+        <NewNaverMap />
         <View
           style={{
             flexDirection: 'row',
@@ -163,38 +163,11 @@ const AroundMainScreen = ({navigation, route}: any) => {
 };
 
 const styles = StyleSheet.create({
-  fixedHeader: {
-    position: 'absolute',
-    top: -10, // 음수 top 값을 사용하여 BottomSheet 위로 나오도록 함
-    left: 0,
-    right: 0,
-    height: 50,
-    backgroundColor: 'skyblue',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  backgroundStyle: {
-    flex: 1,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
   container: {
     flex: 1,
   },
-  mapStyle: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-  },
-  contentContainer: {
+  backgroundStyle: {
     flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
   },
   inputBox: {
     flex: 1,
@@ -210,7 +183,6 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    lineHeight: 16,
   },
   ring: {
     width: 44,
@@ -233,15 +205,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  contents: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 20,
   },
   buttonContainer: {
     position: 'absolute',

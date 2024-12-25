@@ -42,28 +42,15 @@ const DeliveryMainScreen = ({navigation, route}: any) => {
         translucent={false}
       />
       <SafeAreaView style={styles.backgroundStyle}>
-        <View
-          style={{
-            flexDirection: 'row',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 6,
-            paddingLeft: 20,
-            paddingRight: 20,
-          }}>
-          <View style={styles.inputBox}>
-            <SearchIcon color="#8E979E" />
-            <TextInput
-              style={styles.input}
-              placeholder="업체 찾기"
-              placeholderTextColor={'#8E979E'}
-              defaultValue=""
-              onFocus={() => {
-                navigation.navigate('Search');
-              }}
-            />
-          </View>
+        <View style={styles.header}>
+          <Text
+            style={{
+              color: '#C7CDD1',
+              fontSize: 20,
+              fontFamily: 'Pretendard-ExtraBold',
+            }}>
+            전달
+          </Text>
           <Pressable
             style={styles.ring}
             onPress={() => {
@@ -73,15 +60,6 @@ const DeliveryMainScreen = ({navigation, route}: any) => {
           </Pressable>
         </View>
         <ScrollView style={styles.orderList}>
-          <Text
-            style={{
-              color: '#394245',
-              fontSize: 18,
-              fontFamily: 'Pretendard-SemiBold',
-              paddingBottom: 16,
-            }}>
-            전달
-          </Text>
           <View
             style={{
               display: 'flex',
@@ -433,19 +411,15 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 30,
+    alignItems: 'center',
+    paddingRight: 20,
     paddingLeft: 20,
-    paddingTop: 11,
-    paddingBottom: 11,
+    paddingTop: 13,
+    paddingBottom: 13,
     maxHeight: 50,
   },
   backgroundStyle: {
     flex: 1,
-  },
-  headerText: {
-    color: '#C7CDD1',
-    fontSize: 20,
-    fontFamily: 'Pretendard-ExtraBold',
   },
   orderList: {
     flex: 1,
@@ -471,7 +445,6 @@ const styles = StyleSheet.create({
   ring: {
     width: 44,
     height: 44,
-    backgroundColor: 'white',
     padding: 10,
     borderRadius: 50,
     display: 'flex',
