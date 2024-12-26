@@ -30,3 +30,5 @@ export {default as PaymentIcon} from './PaymentIcon';
 export {default as QuestionIcon} from './QuestionIcon';
 export {default as SpeakerIcon} from './SpeakerIcon';
 export {default as PencilIcon} from './PencilIcon';
+export {default as HelloMarkerIcon} from './HelloMarkerIcon';
+export {default as DeliveryMarkerIcon} from './DeliveryMarkerIcon';
