@@ -9,7 +9,7 @@
 		<key>CFBundleDisplayName</key>
 		<string>WhileYouAreAtIt</string>
 		<key>NSFaceIDUsageDescription</key>
-		<string>This app uses Face ID to authenticate you securely.</string>
+		<string>Face ID를 사용하여 보안을 유지합니다.</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -53,9 +53,20 @@
 			<true />
 		</dict>
 		<key>NSCameraUsageDescription</key>
-		<string>We need your permission to use the camera.</string>
+		<string>사진 촬영 및 비디오 녹화를 위해 카메라 접근이 필요합니다.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string></string>
+		<string>위치 기반 서비스를 제공하기 위해 필요합니다.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>사진 라이브러리에서 미디어를 선택하기 위해 필요합니다.</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>사진 라이브러리에 콘텐츠를 저장하기 위해 필요합니다.</string>
+		<key>UNAuthorizationOptionAlert</key>
+		<string>알림을 통해 중요한 정보를 제공합니다.</string>
+		<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+		<dict>
+			<key>Purpose</key>
+			<string>앱의 위치 정확도를 제공하기 위해 필요합니다.</string>
+		</dict>
 		<key>UIAppFonts</key>
 		<array>
 			<string>Pretendard-Black.otf</string>

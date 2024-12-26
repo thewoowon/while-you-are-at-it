@@ -1259,6 +1259,8 @@ PODS:
     - React-Core
   - react-native-biometrics (3.0.1):
     - React-Core
+  - react-native-geolocation-service (5.3.1):
+    - React
   - react-native-safe-area-context (4.14.0):
     - DoubleConversion
     - glog
@@ -2000,6 +2002,7 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-app-auth (from `../node_modules/react-native-app-auth`)
   - react-native-biometrics (from `../node_modules/react-native-biometrics`)
+  - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -2130,6 +2133,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-app-auth"
   react-native-biometrics:
     :path: "../node_modules/react-native-biometrics"
+  react-native-geolocation-service:
+    :path: "../node_modules/react-native-geolocation-service"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -2260,6 +2265,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: fcc774f908265f6169aad2e3e91727ad4110f998
   react-native-app-auth: 79605228ffe689f63ad5b046319f5e154e3e96c2
   react-native-biometrics: 352e5a794bfffc46a0c86725ea7dc62deb085bdc
+  react-native-geolocation-service: 608e1da71a1ac31b4de64d9ef2815f697978c55b
   react-native-safe-area-context: 73505107f7c673cd550a561aeb6271f152c483b6
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   react-native-webview: db22fd5bb2d639eb6493fe8883e7f1f5d961ede7
@@ -2295,7 +2301,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: e6b0837f17a334b5208ca5abb45d35a19840f852
   RNGoogleSignin: e211ecf03428bfcfcc2d639c48daa50cd1209e27
   RNKeychain: 067a602132b1bcdfb6807ed6b7b46f89c9b72c0e
-  RNPermissions: 6fac5ebf86c726cb62fa16638d35e1d574f0642b
+  RNPermissions: 1921c18d37a578a3d3e05d19c39f871dc4dfb854
   RNReanimated: d0033e3643f3dd1621cdbcd1079a7be31801d16c
   RNScreens: 2a9a54bfad821bacd7b3e184c34256d8452071fe
   RNSVG: c7a701e9347b7cda97bce80c413aa68b5ac752b7
@@ -2304,6 +2310,6 @@ SPEC CHECKSUMS:
   VisionCamera: ec141897a88c2e95e8b83cf97b8e4db801e02fd6
   Yoga: 157bed1c62656587df4639d4dc29714898f8fb10
 
-PODFILE CHECKSUM: 2c4f24b45567a4dd7cef49cbb95ea81b59b9588f
+PODFILE CHECKSUM: 51a0f2a4a80de73eb094cef9d03eb87af8c2542d
 
 COCOAPODS: 1.16.2
