@@ -1,3 +1,4 @@
+import customAxios from '../../axios/customAxios';
 import {
   setAccessToken,
   getAccessToken,
@@ -27,14 +28,6 @@ export const login = async ({
 // 로그아웃 및 토큰 삭제
 export const logout = async (): Promise<void> => {
   try {
-    // 서버에 로그아웃 요청 (선택 사항)
-    // 로그아웃 시간 기록 등
-    // await fetch('https://api.example.com/logout', {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json'},
-    // });
-
-    // 로컬 저장소에서 토큰 삭제
     await deleteTokens();
   } catch (error) {
     console.error('Logout failed:', error);
@@ -42,57 +35,34 @@ export const logout = async (): Promise<void> => {
   }
 };
 
-// Access Token 갱신
-export const refreshAccessToken = async (): Promise<void> => {
+export const refreshAccessToken = async (): Promise<boolean> => {
+  const refreshToken = await getRefreshToken();
+  if (!refreshToken) return false;
+
   try {
-    const refreshToken = await getRefreshToken();
-    if (!refreshToken) throw new Error('Refresh token not found');
-
-    // 서버에 Access Token 갱신 요청
-    const response = await fetch('https://api.example.com/token/refresh', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({refresh_token: refreshToken}),
+    const response = await customAxios.post('/auth/refresh-token', {
+      refresh_token: refreshToken,
     });
-
-    if (!response.ok) throw new Error('Failed to refresh access token');
-
-    const {access_token} = await response.json();
-
-    // 새 Access Token 저장
-    await setAccessToken(access_token);
+    await setAccessToken(response.data.access_token);
+    return true;
   } catch (error) {
-    console.error('Error refreshing access token:', error);
-    throw error;
+    console.error('Refresh token validation failed:', error);
+    return false;
   }
 };
 
-// API 호출에 Access Token 사용
-export const fetchWithAuth = async (
-  url: string,
-  options: RequestInit = {},
-): Promise<Response> => {
+export const validateAccessToken = async (): Promise<boolean> => {
+  const accessToken = await getAccessToken();
+  console.log('validateAccessToken accessToken:', accessToken);
+  if (!accessToken) return false;
+
   try {
-    let accessToken = await getAccessToken();
-
-    // Access Token이 없으면 갱신 시도
-    if (!accessToken) {
-      await refreshAccessToken();
-      accessToken = await getAccessToken();
-    }
-
-    if (!accessToken) throw new Error('Unable to get access token');
-
-    // API 요청
-    return await fetch(url, {
-      ...options,
-      headers: {
-        ...options.headers,
-        Authorization: `Bearer ${accessToken}`,
-      },
+    const response = await customAxios.get('/auth/validate-token', {
+      headers: {Authorization: `Bearer ${accessToken}`},
     });
+    return response.status === 200;
   } catch (error) {
-    console.error('API request failed:', error);
-    throw error;
+    console.error('Access token validation failed:', error);
+    return false;
   }
 };

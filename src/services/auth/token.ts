@@ -8,7 +8,9 @@ const TOKEN_KEYS = {
 // Access Token 저장
 export const setAccessToken = async (token: string): Promise<void> => {
   try {
-    await Keychain.setGenericPassword(TOKEN_KEYS.ACCESS_TOKEN, token);
+    await Keychain.setGenericPassword(TOKEN_KEYS.ACCESS_TOKEN, token, {
+      service: 'access_token_service',
+    });
   } catch (error) {
     console.error('Failed to store access token securely:', error);
     throw new Error('Failed to store access token');
@@ -18,7 +20,9 @@ export const setAccessToken = async (token: string): Promise<void> => {
 // Access Token 가져오기
 export const getAccessToken = async (): Promise<string | null> => {
   try {
-    const credentials = await Keychain.getGenericPassword();
+    const credentials = await Keychain.getGenericPassword({
+      service: 'access_token_service',
+    });
     if (credentials && credentials.username === TOKEN_KEYS.ACCESS_TOKEN) {
       return credentials.password;
     }
@@ -32,7 +36,9 @@ export const getAccessToken = async (): Promise<string | null> => {
 // Refresh Token 저장
 export const setRefreshToken = async (token: string): Promise<void> => {
   try {
-    await Keychain.setGenericPassword(TOKEN_KEYS.REFRESH_TOKEN, token);
+    await Keychain.setGenericPassword(TOKEN_KEYS.REFRESH_TOKEN, token, {
+      service: 'refresh_token_service',
+    });
   } catch (error) {
     console.error('Failed to store refresh token securely:', error);
     throw new Error('Failed to store refresh token');
@@ -42,7 +48,9 @@ export const setRefreshToken = async (token: string): Promise<void> => {
 // Refresh Token 가져오기
 export const getRefreshToken = async (): Promise<string | null> => {
   try {
-    const credentials = await Keychain.getGenericPassword();
+    const credentials = await Keychain.getGenericPassword({
+      service: 'refresh_token_service',
+    });
     if (credentials && credentials.username === TOKEN_KEYS.REFRESH_TOKEN) {
       return credentials.password;
     }
