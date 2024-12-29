@@ -25,6 +25,9 @@ type RootStackParamList = {
 
 const OrderMainScreen = ({navigation, route}: any) => {
   // const {query, userId} = route.params;
+  const handleGoToChat = () => {
+    navigation.navigate('Chat');
+  };
   return (
     <GestureHandlerRootView style={styles.container}>
       <StatusBar
@@ -200,9 +203,7 @@ const OrderMainScreen = ({navigation, route}: any) => {
                           gap: 5,
                           width: '100%',
                         }}
-                        onPress={() => {
-                          // navigation.navigate('CompanyInfo');
-                        }}>
+                        onPress={handleGoToChat}>
                         <KakaoIcon color="#1CD7AE" />
                         <Text
                           style={{

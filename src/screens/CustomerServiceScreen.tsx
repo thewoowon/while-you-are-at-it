@@ -11,7 +11,7 @@ import {
   Animated,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {LeftChevronIcon} from '../components/Icons';
+import {LeftArrowIcon} from '../components/Icons';
 
 const CustomerServiceScreen = ({navigation, route}: any) => {
   return (
@@ -22,7 +22,7 @@ const CustomerServiceScreen = ({navigation, route}: any) => {
         translucent={false}
       />
       <SafeAreaView style={styles.backgroundStyle}>
-      <View style={styles.header}>
+        <View style={styles.header}>
           {/* 상단 헤더 */}
           <View
             style={{
@@ -35,7 +35,7 @@ const CustomerServiceScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
           </View>
           <Text style={styles.headerText}>{'게시글 작성하기'}</Text>

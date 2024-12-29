@@ -15,6 +15,8 @@ import {useAuth} from '../hooks';
 import axios from 'axios';
 import {API_PREFIX} from '../constants';
 import {useDebounce} from '../hooks';
+import customAxios from '../axios/customAxios';
+import {getAccessToken} from '../services/auth/token';
 
 const BASE_URL = Platform.select({
   ios: 'http://127.0.0.1:8000', // iOS 시뮬레이터
@@ -65,11 +67,22 @@ const NicknameScreen = ({navigation, route}: any) => {
     return true;
   };
   const onComplete = async () => {
+    const accessToken = await getAccessToken();
     if (isNicknameValid) {
-      const response = await axios.put(`${BASE_URL}${API_PREFIX}/users/me`, {
-        nickname,
-      });
+      const response = await customAxios.put(
+        `${BASE_URL}${API_PREFIX}/users/me`,
+        {
+          nickname,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      );
 
+      console.log(response);
       if (response.status === 201) {
         setIsAuthenticated(true);
       }

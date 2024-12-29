@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -8,6 +8,7 @@ import {
   View,
   TextInput,
   Pressable,
+  Alert,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {
@@ -23,13 +24,24 @@ import Animated, {
   useAnimatedReaction,
 } from 'react-native-reanimated';
 import PassItem from '../components/PassItem';
+import {useArticle} from '../hooks';
+import Geolocation from 'react-native-geolocation-service';
 
 const AroundMainScreen = ({navigation, route}: any) => {
   const [text, setText] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
+  const [articles, setArticles] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // BottomSheet 애니메이션 값을 관리하는 shared value
   const bottomSheetTranslateY = useSharedValue(0);
+
+  // useArticle 훅을 사용하여 데이터를 가져옴
+  const {findOneArticle, findArticles} = useArticle();
 
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -56,6 +68,45 @@ const AroundMainScreen = ({navigation, route}: any) => {
     },
   );
 
+  const fetchArticles = async () => {
+    try {
+      const response = await findArticles();
+      setArticles(response);
+    } catch (error) {
+      console.error('게시글 목록 조회 오류:', error);
+    }
+  };
+
+  const openBottomSheet = () => bottomSheetRef.current?.snapToIndex(0);
+
+  const getCurrentLocation = () => {
+    Geolocation.getCurrentPosition(
+      position => {
+        const {latitude, longitude} = position.coords;
+        setCurrentLocation({latitude, longitude});
+        setIsLoading(false);
+        console.log('현재 위치:', latitude, longitude);
+      },
+      error => {
+        console.error('위치 가져오기 실패:', error);
+        Alert.alert('위치 오류', '현재 위치를 가져올 수 없습니다.');
+        setIsLoading(false);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 10000,
+      },
+    );
+  };
+
+  // 네이버 지도에서 사용자의 위치를 받아오는 함수
+  // 네이버 지도에 실시간 위치를 받아오기
+  useEffect(() => {
+    fetchArticles();
+    // findOneArticle('1');
+  }, []);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <StatusBar
@@ -64,7 +115,13 @@ const AroundMainScreen = ({navigation, route}: any) => {
         translucent={false}
       />
       <SafeAreaView style={styles.backgroundStyle}>
-        <NewNaverMap />
+        <NewNaverMap
+          isLoading={isLoading}
+          currentLocation={currentLocation}
+          openBottomSheet={openBottomSheet}
+          getCurrentLocation={getCurrentLocation}
+          setIsLoading={setIsLoading}
+        />
         <View
           style={{
             flexDirection: 'row',
@@ -102,10 +159,7 @@ const AroundMainScreen = ({navigation, route}: any) => {
               styles.gps,
               {backgroundColor: pressed ? '#eeeeee' : 'white'},
             ]}
-            onPress={
-              () => bottomSheetRef.current?.snapToIndex(0) // GPS 버튼을 누르면 BottomSheet 확장
-            } // GPS 버튼을 누르면 BottomSheet 확장
-          >
+            onPress={getCurrentLocation}>
             <GPSIcon />
           </Pressable>
         </Animated.View>

@@ -34,6 +34,10 @@ const DeliveryMainScreen = ({navigation, route}: any) => {
     };
   });
 
+  const handleGoToChat = () => {
+    navigation.navigate('Chat');
+  };
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <StatusBar
@@ -233,9 +237,7 @@ const DeliveryMainScreen = ({navigation, route}: any) => {
                             backgroundColor: '#E9FCF8',
                             gap: 5,
                           }}
-                          onPress={() => {
-                            // navigation.navigate('CompanyInfo');
-                          }}>
+                          onPress={handleGoToChat}>
                           <KakaoIcon color="#1CD7AE" />
                           <Text
                             style={{

@@ -7,7 +7,7 @@ import {
   View,
   Pressable,
 } from 'react-native';
-import {LeftChevronIcon, ProfileIcon} from '../components/Icons';
+import {LeftArrowIcon, ProfileIcon} from '../components/Icons';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {
   BottomSheetView,
@@ -143,7 +143,7 @@ const DeliveryDetailScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
           </View>
           <Text style={styles.headerText}>{'게시글'}</Text>

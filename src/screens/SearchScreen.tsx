@@ -24,7 +24,7 @@ import {
 } from '../components/Icons/material';
 import {useDebounce} from '../hooks';
 import {SEARCH_DATA} from '../data';
-import {DownChevronIcon, LeftChevronIcon, RingIcon} from '../components/Icons';
+import {DownChevronIcon, LeftArrowIcon, RingIcon} from '../components/Icons';
 
 export const imageMap: {
   [key: string]: any;
@@ -123,7 +123,7 @@ const SearchScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
             <TextInput
               style={styles.input}

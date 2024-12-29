@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {
-  LeftChevronIcon,
+  LeftArrowIcon,
   MiniPhoneIcon,
   MiniStarIcon,
   MiniWatchIcon,
 } from '../components/Icons';
-import {NewNaverMap} from '../components/NaverMap';
+import {NaverMap} from '../components/NaverMap';
 import {COMPANY_DATA, REVIEW_DATA} from '../data';
 
 const CompanyInfoScreen = ({navigation, route}: any) => {
@@ -72,7 +72,7 @@ const CompanyInfoScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
           </View>
           <Text style={styles.headerText}>{companyData.name}</Text>
@@ -83,7 +83,7 @@ const CompanyInfoScreen = ({navigation, route}: any) => {
               height: 141,
               maxHeight: 141,
             }}>
-            <NewNaverMap />
+            <NaverMap />
           </View>
           <View
             style={{

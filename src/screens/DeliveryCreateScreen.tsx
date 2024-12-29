@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {BottomTriangleIcon, LeftChevronIcon} from '../components/Icons';
+import {BottomTriangleIcon, LeftArrowIcon} from '../components/Icons';
 import {Picker} from '@react-native-picker/picker';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Animated, {useSharedValue} from 'react-native-reanimated';
@@ -62,7 +62,7 @@ const DeliveryCreateScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
           </View>
           <Text style={styles.headerText}>{'게시글 작성하기'}</Text>

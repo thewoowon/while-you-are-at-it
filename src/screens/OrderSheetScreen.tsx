@@ -10,8 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {CameraIcon, LeftChevronIcon} from '../components/Icons';
-import {Camera} from 'react-native-vision-camera';
+import {CameraIcon, LeftArrowIcon} from '../components/Icons';
 
 const OrderSheetScreen = ({navigation, route}: any) => {
   const {
@@ -55,7 +54,7 @@ const OrderSheetScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
           </View>
           <Text style={styles.headerText}>{service.name}</Text>

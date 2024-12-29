@@ -11,7 +11,7 @@ import {
   Animated,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {LeftChevronIcon} from '../components/Icons';
+import {LeftArrowIcon} from '../components/Icons';
 
 const PaymentDetailsScreen = ({navigation, route}: any) => {
   return (
@@ -35,7 +35,7 @@ const PaymentDetailsScreen = ({navigation, route}: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <LeftChevronIcon />
+              <LeftArrowIcon />
             </Pressable>
           </View>
           <Text style={styles.headerText}>{'게시글 작성하기'}</Text>

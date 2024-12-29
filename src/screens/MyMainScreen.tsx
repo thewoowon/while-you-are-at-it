@@ -73,6 +73,7 @@ const MyMainScreen = ({navigation, route}: any) => {
         <View
           style={{
             flex: 1,
+            marginTop: 10,
             paddingLeft: 20,
             paddingRight: 20,
             display: 'flex',

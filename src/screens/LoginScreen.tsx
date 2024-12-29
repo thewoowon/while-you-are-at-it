@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -22,6 +22,7 @@ import {API_PREFIX} from '../constants';
 import Toast from 'react-native-toast-message';
 import {login} from '../services/auth';
 import {useAuth} from '../hooks';
+import CheckBox from '@react-native-community/checkbox';
 
 const BASE_URL = Platform.select({
   ios: 'http://127.0.0.1:8000', // iOS 시뮬레이터
@@ -29,6 +30,7 @@ const BASE_URL = Platform.select({
 });
 
 const LoginScreen = ({navigation, route}: any) => {
+  const [isSelected, setSelection] = useState(false);
   const {setIsAuthenticated} = useAuth();
   const naverConfig = {
     issuer: 'https://nid.naver.com',
@@ -61,6 +63,7 @@ const LoginScreen = ({navigation, route}: any) => {
           `${BASE_URL}${API_PREFIX}/auth/google/`,
           {
             id_token: userInfo.data?.idToken,
+            is_selected: isSelected ? 1 : 0,
           },
         );
 
@@ -221,7 +224,19 @@ const LoginScreen = ({navigation, route}: any) => {
             </View>
             <Text style={styles.buttonFont}>카카오로 계속하기</Text>
           </Pressable>
-          <Pressable style={{...styles.button}}>
+          <View style={styles.checkBoxContainer}>
+            <CheckBox
+              value={isSelected}
+              onValueChange={setSelection}
+              style={styles.checkbox}
+            />
+            <Text>로그인 유지</Text>
+          </View>
+          <Pressable
+            style={{...styles.button}}
+            onPress={() => {
+              setIsAuthenticated(true);
+            }}>
             <Text
               style={{
                 color: '#8E979E',
@@ -331,6 +346,16 @@ const styles = StyleSheet.create({
     width: 80,
     height: 1,
     backgroundColor: '#E6EAED',
+  },
+  checkBoxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 10,
+  },
+  checkbox: {
+    width: 24,
+    height: 24,
+    marginRight: 8,
   },
 });
 
