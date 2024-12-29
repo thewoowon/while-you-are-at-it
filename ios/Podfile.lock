@@ -5,6 +5,7 @@ PODS:
   - AppAuth/Core (1.7.6)
   - AppAuth/ExternalUserAgent (1.7.6):
     - AppAuth/Core
+  - BEMCheckBox (1.4.1)
   - boost (1.84.0)
   - BVLinearGradient (2.8.3):
     - React-Core
@@ -1642,6 +1643,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNCCheckbox (0.5.17):
+    - BEMCheckBox (~> 1.4)
+    - React-Core
   - RNCPicker (2.10.1):
     - DoubleConversion
     - glog
@@ -1727,7 +1731,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNPermissions (5.1.0):
+  - RNPermissions (5.2.1):
     - DoubleConversion
     - glog
     - RCT-Folly (= 2024.01.01.00)
@@ -1880,7 +1884,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (15.8.0):
+  - RNSVG (15.10.1):
     - DoubleConversion
     - glog
     - RCT-Folly (= 2024.01.01.00)
@@ -1900,9 +1904,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNSVG/common (= 15.8.0)
+    - RNSVG/common (= 15.10.1)
     - Yoga
-  - RNSVG/common (15.8.0):
+  - RNSVG/common (15.10.1):
     - DoubleConversion
     - glog
     - RCT-Folly (= 2024.01.01.00)
@@ -1945,16 +1949,16 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - SocketRocket (0.7.1)
-  - VisionCamera (4.6.1):
-    - VisionCamera/Core (= 4.6.1)
-    - VisionCamera/FrameProcessors (= 4.6.1)
-    - VisionCamera/React (= 4.6.1)
-  - VisionCamera/Core (4.6.1)
-  - VisionCamera/FrameProcessors (4.6.1):
+  - VisionCamera (4.6.3):
+    - VisionCamera/Core (= 4.6.3)
+    - VisionCamera/FrameProcessors (= 4.6.3)
+    - VisionCamera/React (= 4.6.3)
+  - VisionCamera/Core (4.6.3)
+  - VisionCamera/FrameProcessors (4.6.3):
     - React
     - React-callinvoker
     - react-native-worklets-core
-  - VisionCamera/React (4.6.1):
+  - VisionCamera/React (4.6.3):
     - React-Core
     - VisionCamera/FrameProcessors
   - Yoga (0.0.0)
@@ -2034,6 +2038,7 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNCCheckbox (from `../node_modules/@react-native-community/checkbox`)"
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
@@ -2049,6 +2054,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - BEMCheckBox
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
@@ -2197,6 +2203,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCCheckbox:
+    :path: "../node_modules/@react-native-community/checkbox"
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
@@ -2222,6 +2230,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
@@ -2297,17 +2306,18 @@ SPEC CHECKSUMS:
   ReactCodegen: 99e6fbdfffe5dc5f7ef23a40d27b01204cbb8c3f
   ReactCommon: 8a0140acb60099a2beb4df4b0f19e738c1fe7d0b
   RNCAsyncStorage: d4120fdd4fda29519cff0b3e44a05fc9d4521ec3
+  RNCCheckbox: a3ca9978cb0846b981d28da4e9914bd437403d77
   RNCPicker: 9b3ae954c2f27a168e4827360da80561980b86d4
   RNGestureHandler: e6b0837f17a334b5208ca5abb45d35a19840f852
   RNGoogleSignin: e211ecf03428bfcfcc2d639c48daa50cd1209e27
   RNKeychain: 067a602132b1bcdfb6807ed6b7b46f89c9b72c0e
-  RNPermissions: 1921c18d37a578a3d3e05d19c39f871dc4dfb854
+  RNPermissions: 2a781a71cd04460d46bf018d3fe5ee8c92c0959c
   RNReanimated: d0033e3643f3dd1621cdbcd1079a7be31801d16c
   RNScreens: 2a9a54bfad821bacd7b3e184c34256d8452071fe
-  RNSVG: c7a701e9347b7cda97bce80c413aa68b5ac752b7
+  RNSVG: bb6c2579325a6432068104b00608eff4d3a4058e
   RNVectorIcons: a1344e212e80e6e0f4537a9960148201175f4225
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  VisionCamera: ec141897a88c2e95e8b83cf97b8e4db801e02fd6
+  VisionCamera: 88df4dae7196c93ecd331f105f0e5d7d95702cb3
   Yoga: 157bed1c62656587df4639d4dc29714898f8fb10
 
 PODFILE CHECKSUM: 51a0f2a4a80de73eb094cef9d03eb87af8c2542d
