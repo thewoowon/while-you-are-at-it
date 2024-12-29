@@ -4,8 +4,9 @@ import {
   NaverMapMarkerOverlay,
   MapType,
   Camera,
+  NaverMapViewRef,
 } from '@mj-studio/react-native-naver-map';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
   View,
   StyleSheet,
@@ -25,13 +26,74 @@ import {
 import Geolocation from 'react-native-geolocation-service';
 import {DeliveryMarkerIcon, HelloMarkerIcon} from '../Icons';
 import PulseIcon from '../Icons/PulseIcon';
+import {Bounce} from '../Bounce';
 
-const NewNaverMap = () => {
-  const [currentLocation, setCurrentLocation] = useState<{
+type NewNaverMapProps = {
+  openBottomSheet: () => void;
+  getCurrentLocation: () => void;
+  currentLocation: {
     latitude: number;
     longitude: number;
-  } | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  } | null;
+  isLoading: boolean;
+  setIsLoading: (isLoading: boolean) => void;
+};
+
+const ADDRESS_DATA = [
+  {
+    address: '서울특별시 종로구 종로 139-1, 주얼리타운 ',
+    latitude: 37.5707538249968,
+    longitude: 126.993161458905,
+  },
+  {
+    address: '서울 종로구 돈화문로10가길 23, 새하얀 도금',
+    latitude: 37.5734277517211,
+    longitude: 126.992400619828,
+  },
+  {
+    address: '봉익동 18-3번지 1층 종로구 서울특별시 KR, 호로록 분식',
+    latitude: 37.5725131542701,
+    longitude: 126.992440106076,
+  },
+  {
+    address: '서울특별시 종로구 돈화문로 35-1 2층, 진1926',
+    latitude: 37.5716841832285,
+    longitude: 126.991617354163,
+  },
+  {
+    address: '서울특별시 종로구 돈화문로6가길 29, 아림주물',
+    latitude: 37.5720293026915,
+    longitude: 126.992175723415,
+  },
+  {
+    address: '서울 종로구 종로3가 28, 대림주얼리',
+    latitude: 37.5707429078644,
+    longitude: 126.992905749012,
+  },
+  {
+    address: '서울 종로구 종로3가 28',
+    latitude: 37.5707429078644,
+    longitude: 126.992905749012,
+  },
+  {
+    address: '서울특별시 종로구 돈화문로9길 17, 닭한마리',
+    latitude: 37.5716318667707,
+    longitude: 126.990827352272,
+  },
+  {
+    address: '서울특별시 종로구 돈화문로20길 17, 장안성',
+    latitude: 37.5711516142842,
+    longitude: 126.991749628086,
+  },
+];
+
+const NewNaverMap = ({
+  openBottomSheet,
+  getCurrentLocation,
+  currentLocation,
+  isLoading,
+  setIsLoading,
+}: NewNaverMapProps) => {
   const jongloRegion: Region = {
     latitude: 37.57156058453199,
     longitude: 126.99187240251595,
@@ -39,7 +101,7 @@ const NewNaverMap = () => {
     longitudeDelta: 0.8,
   };
 
-  const ref = useRef(null);
+  const ref = useRef<NaverMapViewRef>(null);
   const mapType: MapType = 'Basic';
   const indoor = false;
   const symbolScale = 1.1;
@@ -104,30 +166,21 @@ const NewNaverMap = () => {
     }
   };
 
-  const getCurrentLocation = () => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const {latitude, longitude} = position.coords;
-        setCurrentLocation({latitude, longitude});
-        setIsLoading(false);
-        console.log('현재 위치:', latitude, longitude);
-      },
-      error => {
-        console.error('위치 가져오기 실패:', error);
-        Alert.alert('위치 오류', '현재 위치를 가져올 수 없습니다.');
-        setIsLoading(false);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 10000,
-      },
-    );
-  };
-
   useEffect(() => {
     requestLocationPermission();
   }, []);
+
+  useEffect(() => {
+    if (currentLocation) {
+      console.log('currentLocation:', currentLocation);
+      // ref.current?.setLocationTrackingMode('Follow');
+      ref.current?.animateCameraTo({
+        latitude: jongloRegion.latitude,
+        longitude: jongloRegion.longitude,
+        zoom: 16.5,
+      });
+    }
+  }, [currentLocation]);
 
   return (
     <View style={styles.container}>
@@ -141,7 +194,6 @@ const NewNaverMap = () => {
           style={{flex: 1}}
           mapType={mapType}
           initialRegion={jongloRegion}
-          initialCamera={initialCamera}
           symbolScale={symbolScale}
           locale={'ko'}
           isIndoorEnabled={indoor}
@@ -156,20 +208,45 @@ const NewNaverMap = () => {
           minZoom={5}
           onInitialized={onInitialized}
           onCameraChanged={onCameraChanged}>
-          <NaverMapMarkerOverlay
-            latitude={37.57156058453199}
-            longitude={126.99187240251595}
-            onTap={() => console.log(1)}
-            anchor={{x: 0.5, y: 1}}
-            width={35}
-            height={38}
-            children={
-              <Pressable style={styles.deliveryMarker}>
-                <DeliveryMarkerIcon />
-              </Pressable>
-            }
-          />
-          <NaverMapMarkerOverlay
+          {ADDRESS_DATA.map((address, index) => (
+            <NaverMapMarkerOverlay
+              key={index}
+              latitude={address.latitude}
+              longitude={address.longitude}
+              anchor={{x: 0.5, y: 1}}
+              width={35}
+              height={38}
+              // caption={{
+              //   text: address.address,
+              //   textSize: 10,
+              //   color: 'black',
+              //   haloColor: 'white',
+              // }}
+              onTap={() => openBottomSheet()}
+              children={
+                <Pressable style={styles.deliveryMarker}>
+                  <DeliveryMarkerIcon />
+                </Pressable>
+              }
+            />
+          ))}
+          {jongloRegion && (
+            <NaverMapMarkerOverlay
+              latitude={jongloRegion.latitude}
+              longitude={jongloRegion.longitude}
+              anchor={{x: 0.5, y: 1}}
+              width={35}
+              height={38}
+              children={<Bounce />}
+              caption={{
+                text: '현재 위치',
+                textSize: 18,
+                color: 'black',
+                haloColor: 'white',
+              }}
+            />
+          )}
+          {/* <NaverMapMarkerOverlay
             latitude={37.5711516142842}
             longitude={126.991749628086}
             onTap={() => console.log(1)}
@@ -181,20 +258,8 @@ const NewNaverMap = () => {
                 <HelloMarkerIcon />
               </Pressable>
             }
-          />
-          <NaverMapMarkerOverlay
-            latitude={37.5710194900321}
-            longitude={126.992526739499}
-            onTap={() => console.log(1)}
-            anchor={{x: 0.5, y: 1}}
-            width={35}
-            height={38}
-            children={
-              <Pressable style={styles.helloMarker}>
-                <PulseIcon />
-              </Pressable>
-            }
-          />
+          /> */}
+
           {/* 현재 위치 마커 */}
           {currentLocation && (
             <NaverMapMarkerOverlay
