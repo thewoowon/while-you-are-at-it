@@ -8,6 +8,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {GOOGLE_IOS_CLIENT_ID, GOOGLE_AOS_CLIENT_ID} from '@env';
 import {AuthProvider} from './src/contexts';
 import RootNavigator from './src/navigation/RootNavigator';
+import {useAuth} from './src/hooks';
 
 const googleSigninConfigure = () => {
   GoogleSignin.configure({
@@ -17,29 +18,36 @@ const googleSigninConfigure = () => {
 };
 
 function App(): React.JSX.Element {
+  const {initializeAuth} = useAuth();
+
   useEffect(() => {
     googleSigninConfigure();
+    initializeAuth();
   }, []);
 
   return (
-    <AuthProvider>
-      <NavigationContainer
-        theme={{
-          dark: false,
-          colors: {
-            primary: '#FF6B6B',
-            background: '#FFFFFF',
-            card: '#FFFFFF',
-            text: '#000000',
-            border: '#E5E5E5',
-            notification: '#FF6B6B',
-          },
-        }}>
-        <RootNavigator />
-        <Toast />
-      </NavigationContainer>
-    </AuthProvider>
+    <NavigationContainer
+      theme={{
+        dark: false,
+        colors: {
+          primary: '#FF6B6B',
+          background: '#FFFFFF',
+          card: '#FFFFFF',
+          text: '#000000',
+          border: '#E5E5E5',
+          notification: '#FF6B6B',
+        },
+      }}>
+      <RootNavigator />
+      <Toast />
+    </NavigationContainer>
   );
 }
 
-export default App;
+export default function RootApp() {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+}
