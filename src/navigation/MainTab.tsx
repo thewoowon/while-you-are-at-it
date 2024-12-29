@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {DeliveryScreen, MyScreen, OrderScreen, AroundScreen} from '../screens';
 import {AroundIcon, DeliveryIcon, OrderIcon, MyIcon} from '../components/Icons';
 import {Text} from 'react-native';
+import ChatScreen from '../screens/ChatScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +32,7 @@ const MainTab = () => (
       tabBarInactiveTintColor: 'gray', // 비활성화된 탭의 텍스트 색상
     }}>
     <Tab.Screen
-      name="주변"
+      name="Around"
       component={AroundScreen}
       options={{
         headerShown: false,
@@ -51,7 +52,7 @@ const MainTab = () => (
       }}
     />
     <Tab.Screen
-      name="전달"
+      name="Delivery"
       component={DeliveryScreen}
       options={{
         headerShown: false,
@@ -71,7 +72,7 @@ const MainTab = () => (
       }}
     />
     <Tab.Screen
-      name="주문"
+      name="Order"
       component={OrderScreen}
       options={{
         headerShown: false,
@@ -91,7 +92,7 @@ const MainTab = () => (
       }}
     />
     <Tab.Screen
-      name="내 정보"
+      name="MyPage"
       component={MyScreen}
       options={{
         headerShown: false,
@@ -108,6 +109,16 @@ const MainTab = () => (
             내 정보
           </Text>
         ),
+      }}
+    />
+    <Tab.Screen
+      name="Chat"
+      component={ChatScreen}
+      options={{
+        headerShown: false,
+        tabBarItemStyle: {
+          display: 'none',
+        },
       }}
     />
   </Tab.Navigator>
