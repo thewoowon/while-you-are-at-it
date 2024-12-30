@@ -149,6 +149,19 @@ const AroundMainScreen = ({navigation, route}: any) => {
             ]}
             onPress={handlePress}>
             <RingIcon />
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: 12,
+                height: 12,
+                borderRadius: 50,
+                backgroundColor: 'red',
+                zIndex: 1,
+                ...{borderWidth: 1, borderColor: 'white'},
+              }}
+            />
           </Pressable>
         </View>
 
@@ -248,6 +261,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
   },
   gps: {
     width: 48,

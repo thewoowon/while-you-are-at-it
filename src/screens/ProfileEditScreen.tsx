@@ -38,7 +38,7 @@ const ProfileEditScreen = ({navigation, route}: any) => {
               <LeftArrowIcon />
             </Pressable>
           </View>
-          <Text style={styles.headerText}>{'게시글 작성하기'}</Text>
+          <Text style={styles.headerText}>{'내 정보 수정'}</Text>
         </View>
         <View style={styles.container}>
           <Text>ProfileEditScreen</Text>
