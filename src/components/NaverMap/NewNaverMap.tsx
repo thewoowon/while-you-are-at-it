@@ -237,10 +237,10 @@ const NewNaverMap = ({
               anchor={{x: 0.5, y: 1}}
               width={35}
               height={38}
-              children={<Bounce />}
+              image={require('../../assets/images/current_marker.png')}
               caption={{
                 text: '현재 위치',
-                textSize: 18,
+                textSize: 16,
                 color: 'black',
                 haloColor: 'white',
               }}
@@ -268,7 +268,13 @@ const NewNaverMap = ({
               anchor={{x: 0.5, y: 1}}
               width={35}
               height={38}
-              image={require('../../assets/images/logo_main_1.png')}
+              children={
+                <View>
+                  <View>
+                    <View></View>
+                  </View>
+                </View>
+              }
             />
           )}
         </NaverMapView>
@@ -333,6 +339,30 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: '50%',
     overflow: 'hidden',
+  },
+  outside: {
+    backgroundColor: 'rgba(67, 133, 245, 0.2)',
+    width: 24,
+    height: 24,
+    borderRadius: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  midside: {
+    backgroundColor: '#FFFFFF',
+    width: 13,
+    height: 13,
+    borderRadius: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inside: {
+    backgroundColor: '#4385F5',
+    width: 10,
+    height: 10,
+    borderRadius: 50,
   },
 });
 

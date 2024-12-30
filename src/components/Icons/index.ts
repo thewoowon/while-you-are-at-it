@@ -33,3 +33,4 @@ export {default as PencilIcon} from './PencilIcon';
 export {default as HelloMarkerIcon} from './HelloMarkerIcon';
 export {default as DeliveryMarkerIcon} from './DeliveryMarkerIcon';
 export {default as HomeIcon} from './HomeIcon';
+export {default as PlusIcon} from './PlusIcon';
